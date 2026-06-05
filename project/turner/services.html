@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — FPS Contracting</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── SERVICE DETAIL SECTIONS ── */
+    .svc-section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .svc-section:last-of-type { border-bottom: none; }
+
+    .svc-layout {
+      display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start;
+    }
+    .svc-layout.reverse { grid-template-columns: 1fr 340px; }
+    .svc-layout.reverse .svc-sidebar { order: 2; }
+    .svc-layout.reverse .svc-main   { order: 1; }
+
+    .svc-sidebar {}
+    .svc-sidebar-num {
+      font-size: 80px; font-weight: 800; color: var(--lgray);
+      line-height: 1; letter-spacing: -.04em; margin-bottom: -12px; display: block;
+    }
+    .svc-sidebar-title {
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; line-height: 1.05;
+      letter-spacing: -.02em; margin-bottom: 20px;
+    }
+    .svc-sidebar-title em {
+      font-family: 'Playfair Display', serif; font-style: italic; color: var(--accent);
+    }
+    .svc-sidebar-body {
+      font-size: 15px; line-height: 1.8; color: var(--gray); margin-bottom: 28px;
+    }
+
+    .svc-img {
+      aspect-ratio: 4/3; overflow: hidden; position: relative;
+      background: #1a1a1a;
+    }
+    .svc-img img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .88; }
+    .svc-img-accent {
+      position: absolute; bottom: 0; right: 0;
+      width: 64px; height: 64px; background: var(--accent);
+    }
+
+    .svc-list {
+      list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border-top: 1px solid var(--border); margin-bottom: 32px;
+    }
+    .svc-list li {
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+      font-size: 14px; font-weight: 500; color: var(--dark);
+      display: flex; align-items: center; gap: 10px; padding-right: 16px;
+    }
+    .svc-list li::before {
+      content: ''; width: 5px; height: 5px; background: var(--accent); flex-shrink: 0;
+    }
+
+    .svc-list-single {
+      grid-template-columns: 1fr;
+    }
+
+    /* ── CLIENTS GRID ── */
+    .clients-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+      margin-top: 0;
+    }
+    .client-card {
+      background: var(--off); padding: 28px 24px;
+      text-align: center; transition: background .2s;
+      border-top: 3px solid transparent;
+    }
+    .client-card:hover { background: var(--white); border-top-color: var(--accent); }
+    .client-icon { font-size: 28px; margin-bottom: 12px; }
+    .client-name { font-size: 13px; font-weight: 700; letter-spacing: .03em; }
+
+    /* ── SCOPE GRID ── */
+    .scope-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .scope-item {
+      background: var(--off); padding: 24px 28px;
+      border-left: 3px solid transparent;
+      transition: all .2s;
+    }
+    .scope-item:hover { background: var(--white); border-left-color: var(--accent); }
+    .scope-item-title {
+      font-size: 14px; font-weight: 700; margin-bottom: 6px; letter-spacing: .01em;
+    }
+    .scope-item-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* ── WIDE CTA ── */
+    .wide-cta { background: var(--accent); padding: 72px 0; }
+    .wide-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap; }
+    .wide-cta-title { font-size: clamp(24px, 3.5vw, 42px); font-weight: 800; color: var(--white); max-width: 540px; line-height: 1.15; letter-spacing: -.02em; }
+
+    @media (max-width: 900px) {
+      .svc-layout, .svc-layout.reverse { grid-template-columns: 1fr; gap: 40px; }
+      .svc-layout.reverse .svc-sidebar, .svc-layout.reverse .svc-main { order: unset; }
+      .svc-list { grid-template-columns: 1fr; }
+      .clients-grid { grid-template-columns: repeat(2,1fr); }
+      .scope-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .clients-grid { grid-template-columns: 1fr 1fr; }
+      .scope-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" id="nav">
+    <a class="nav-logo" href="index.html">
+      <img src="https://fpscontracting.com/share/images/FPS-logo-bg-white.svg" alt="FPS Contracting"
+           onerror="this.style.display='none'; document.querySelector('.nav-logo-text').style.display='block'">
+      <span class="nav-logo-text" style="display:none">FPS <span>CONTRACTING</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About Us</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
+    <a class="nav-cta" href="index.html#contact">Contact Us</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://fpscontracting.com/share/images/galleries/slider_home/contruction-managment.jpg')"></div>
+    <div class="page-hero-content">
+      <div class="page-breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Services</div>
+      <h1 class="page-title">Our <em>Services</em></h1>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="section">
+    <div class="wrap">
+      <div style="max-width: 760px;" class="reveal">
+        <span class="section-eyebrow">Full Service General Contractor</span>
+        <h2 class="section-heading">What We <em>Do</em></h2>
+        <div class="accent-rule"></div>
+        <p class="section-body" style="max-width:100%">FPS Contracting provides comprehensive construction services across the New York metropolitan area. From preconstruction planning through final certificate of occupancy, our in-house team delivers every phase with the same commitment to quality and integrity that has defined us for over 30 years.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSTRUCTION MANAGEMENT -->
+  <section class="svc-section section-alt" id="construction-mgmt">
+    <div class="wrap">
+      <div class="svc-layout">
+        <div class="svc-sidebar reveal">
+          <span class="svc-sidebar-num">01</span>
+          <h2 class="svc-sidebar-title">Construction <em>Management</em></h2>
+          <div class="accent-rule"></div>
+          <p class="svc-sidebar-body">Our construction management services provide comprehensive oversight and coordination from the earliest planning stages through project closeout. We act as your trusted partner, protecting your interests at every step and ensuring your project is delivered on time and within budget.</p>
+          <a class="btn btn-orange" href="index.html#contact">Get a Free Estimate <span>→</span></a>
+        </div>
+        <div class="svc-main reveal">
+          <ul class="svc-list svc-list-single">
+            <li>Estimated Cost &amp; Budget Development</li>
+            <li>Job Meeting &amp; Schedule Updates</li>
+            <li>Permits, Plans &amp; Certificate of Occupancy</li>
+            <li>Purchasing Strategies &amp; Procurement</li>
+            <li>Subcontractor Coordination &amp; Oversight</li>
+            <li>Quality Control &amp; Punch List Management</li>
+            <li>Owner Representation &amp; Advocacy</li>
+            <li>Risk Management &amp; Problem Resolution</li>
+          </ul>
+          <div class="svc-img" style="margin-top:32px;">
+            <img src="https://fpscontracting.com/share/images/galleries/slider_home/construction.jpg" alt="Construction Management" onerror="this.style.opacity='0'; this.parentElement.style.background='#2a2826'">
+            <div class="svc-img-accent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR CLIENTS -->
+  <section class="svc-section" id="clients">
+    <div class="wrap">
+      <div class="reveal" style="margin-bottom:48px;">
+        <span class="svc-sidebar-num">02</span>
+        <h2 class="svc-sidebar-title">Our <em>Clients</em></h2>
+        <div class="accent-rule"></div>
+        <p class="section-body">We serve a diverse range of clients across New York, bringing the same commitment to quality and service to every project — regardless of sector or scale.</p>
+      </div>
+      <div class="clients-grid">
+        <div class="client-card reveal">
+          <div class="client-icon">🏥</div>
+          <div class="client-name">Clinics &amp; Medical Offices</div>
+        </div>
+        <div class="client-card reveal">
+          <div class="client-icon">🏘️</div>
+          <div class="client-name">Community Residences</div>
+        </div>
+        <div class="client-card reveal">
+          <div class="client-icon">🧠</div>
+          <div class="client-name">Day Treatment Centers</div>
+        </div>
+        <div class="client-card reveal">
+          <div class="client-icon">🏦</div>
+          <div class="client-name">Hospitality &amp; Financial</div>
+        </div>
+        <div class="client-card reveal">
+          <div class="client-icon">🛏️</div>
+          <div class="client-name">Nursing Homes</div>
+        </div>
+        <div class="client-card reveal">
+          <div class="client-icon">🏢</div>
+          <div class="client-name">Office &amp; Commercial</div>
+        </div>
+        <div class="client-card reveal">
+          <div class="client-icon">🏡</div>
+          <div class="client-name">Residential Homes</div>
+        </div>
+        <div class="client-card reveal">
+          <div class="client-icon">🎓</div>
+          <div class="client-name">Schools &amp; Institutions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCOPE OF WORK -->
+  <section class="svc-section section-alt" id="scope">
+    <div class="wrap">
+      <div class="reveal" style="margin-bottom:48px;">
+        <span class="svc-sidebar-num">03</span>
+        <h2 class="svc-sidebar-title">Scope of <em>Work</em></h2>
+        <div class="accent-rule"></div>
+        <p class="section-body">Our in-house capabilities span the full spectrum of construction trades — from structural and mechanical systems to architectural finishes and specialty installations.</p>
+      </div>
+      <div class="scope-grid">
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Alarm &amp; Sprinkler Systems</div>
+          <div class="scope-item-desc">Full life-safety system installation, testing, and compliance to NYC code requirements.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Electrical &amp; Plumbing Systems</div>
+          <div class="scope-item-desc">Complete electrical service, distribution, lighting, and all plumbing rough-in and finish work.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Elevator Construction</div>
+          <div class="scope-item-desc">New elevator installation and cab modernization in occupied and new-construction buildings.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Floor &amp; Wall Finishes</div>
+          <div class="scope-item-desc">Tile, hardwood, carpet, VCT, paint, wallcovering, and specialty finish systems.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Handicapped Access Construction</div>
+          <div class="scope-item-desc">ADA-compliant ramps, restrooms, doorways, and accessible routes throughout a facility.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Heating &amp; Cooling Systems</div>
+          <div class="scope-item-desc">HVAC installation and replacement, including ductwork, VAV systems, and rooftop units.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Lighting Environments</div>
+          <div class="scope-item-desc">Architectural, task, and ambient lighting design and installation for any environment.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Masonry</div>
+          <div class="scope-item-desc">Brick, block, stone, concrete, and masonry restoration by experienced tradespeople.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Renovation &amp; New Construction</div>
+          <div class="scope-item-desc">Full interior and structural renovations as well as ground-up new construction projects.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Roof Replacement</div>
+          <div class="scope-item-desc">Complete flat and pitched roofing systems, insulation, drainage, and waterproofing.</div>
+        </div>
+        <div class="scope-item reveal">
+          <div class="scope-item-title">Windows &amp; Doors</div>
+          <div class="scope-item-desc">Storefront, curtain wall, commercial windows, hollow metal, and architectural wood doors.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="wide-cta">
+    <div class="wrap">
+      <div class="wide-cta-inner">
+        <h2 class="wide-cta-title">Join our growing number of satisfied customers.</h2>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-outline-white" href="index.html#contact">Contact Us Today <span>→</span></a>
+          <a class="btn" style="background:var(--white); color:var(--accent);" href="tel:+17183262818">+1 718 326 2818</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <img class="footer-brand-logo" src="https://fpscontracting.com/share/images/FPS-logo-bg-white.svg" alt="FPS Contracting" onerror="this.style.display='none'; document.querySelector('.svc-footer-fb').style.display='block'">
+          <span class="footer-brand-text svc-footer-fb" style="display:none">FPS <span>CONTRACTING</span></span>
+          <p class="footer-tagline">Premier general contractor serving New York City and the greater metropolitan area. Committed to integrity, quality, and excellence since the 1990s.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/FPSContracting" target="_blank">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html">All Services</a></li>
+            <li><a href="services.html#construction-mgmt">Construction Management</a></li>
+            <li><a href="services.html#scope">Scope of Work</a></li>
+            <li><a href="projects.html">Projects Gallery</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Get In Touch</div>
+          <div class="footer-contact-line"><a href="https://goo.gl/maps/JnCL2ajfk4S2" target="_blank">5830 Maspeth Ave<br>Maspeth, NY 11378</a></div>
+          <div class="footer-contact-line"><a href="tel:+17183262818">+1 718 326 2818</a></div>
+          <div class="footer-contact-line"><a href="mailto:fpscontracting@gmail.com">fpscontracting@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 FPS Contracting Inc. All rights reserved.</div>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

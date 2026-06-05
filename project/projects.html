@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — FPS Contracting</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── FILTER ── */
+    .filter-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: calc(var(--nav-h) + 34px); z-index: 99;
+    }
+    .filter-inner { display: flex; align-items: center; overflow-x: auto; }
+    .filter-btn {
+      flex-shrink: 0; background: none; border: none; cursor: pointer;
+      font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase; color: var(--gray);
+      padding: 20px 26px; position: relative; transition: color .2s;
+    }
+    .filter-btn::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--blue); transform: scaleX(0); transition: transform .25s;
+    }
+    .filter-btn:hover { color: var(--navy); }
+    .filter-btn.active { color: var(--navy); }
+    .filter-btn.active::after { transform: scaleX(1); }
+    .filter-count {
+      margin-left: 6px; font-size: 10px; font-weight: 700;
+      color: var(--blue); background: rgba(15,110,191,.1);
+      padding: 1px 7px; border-radius: 20px;
+    }
+
+    /* ── HERO FEATURE ── */
+    .featured-hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      height: 560px;
+    }
+    .fh-img {
+      position: relative; overflow: hidden; background: var(--ink);
+    }
+    .fh-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      opacity: .82; transition: transform .6s ease;
+    }
+    .fh-img:hover img { transform: scale(1.04); }
+    .fh-copy {
+      background: var(--navy); padding: 64px 56px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .fh-tag {
+      font-family: 'Archivo', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.4);
+      margin-bottom: 12px; display: block;
+    }
+    .fh-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(24px, 3vw, 42px); font-weight: 900; color: var(--white);
+      line-height: 1.1; letter-spacing: -.02em; margin-bottom: 16px;
+    }
+    .fh-desc { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.55); margin-bottom: 28px; }
+
+    /* ── MASONRY GRID ── */
+    .gallery-section { padding: 0 0 80px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    .gallery-card {
+      position: relative; overflow: hidden; background: var(--ink);
+      cursor: pointer;
+    }
+    .gallery-card.span2 { grid-column: span 2; }
+    .gallery-card.hidden { display: none; }
+
+    .gc-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+      transition: transform .55s ease, opacity .3s;
+      opacity: .85;
+    }
+    .gallery-card.span2 .gc-img { aspect-ratio: 16/9; }
+    .gallery-card:hover .gc-img { transform: scale(1.06); opacity: 1; }
+
+    .gc-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,20,28,.88) 0%, transparent 52%);
+      opacity: 0; transition: opacity .3s;
+    }
+    .gallery-card:hover .gc-overlay { opacity: 1; }
+
+    .gc-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 22px 22px 18px;
+      transform: translateY(8px); opacity: 0; transition: all .3s;
+    }
+    .gallery-card:hover .gc-info { transform: none; opacity: 1; }
+    .gc-cat {
+      display: inline-block; font-family: 'Archivo', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--white); background: var(--blue);
+      padding: 3px 9px; margin-bottom: 6px;
+    }
+    .gc-title { font-family: 'Archivo', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+
+    /* Static label */
+    .gc-strip {
+      background: var(--white); padding: 14px 18px;
+      border-top: 3px solid transparent; transition: border-color .25s;
+    }
+    .gallery-card:hover .gc-strip { border-top-color: var(--blue); }
+    .gc-strip-cat { font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 3px; }
+    .gc-strip-title { font-family: 'Archivo', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); }
+
+    /* Empty state */
+    .gallery-empty { display: none; grid-column: 1/-1; padding: 80px; text-align: center; color: var(--gray); }
+    .gallery-empty.show { display: block; }
+
+    /* ── LIGHTBOX ── */
+    .lb {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(10,16,24,.96);
+      display: none; align-items: center; justify-content: center;
+    }
+    .lb.open { display: flex; }
+    .lb-img { max-width: 88vw; max-height: 86vh; object-fit: contain; display: block; }
+    .lb-close {
+      position: absolute; top: 24px; right: 32px;
+      font-size: 26px; color: rgba(255,255,255,.6); cursor: pointer;
+      background: none; border: none; transition: color .2s;
+    }
+    .lb-close:hover { color: var(--white); }
+    .lb-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.08); color: var(--white);
+      border: none; font-size: 26px; cursor: pointer; padding: 18px 22px;
+      transition: background .2s;
+    }
+    .lb-btn:hover { background: var(--blue); }
+    .lb-prev { left: 16px; }
+    .lb-next { right: 16px; }
+    .lb-cap {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      text-align: center;
+    }
+    .lb-cap-cat { font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 4px; }
+    .lb-cap-title { font-size: 14px; color: rgba(255,255,255,.6); }
+
+    /* ── CTA ── */
+    .project-cta { background: var(--blue); padding: 72px 0; }
+    .pcta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+    .pcta-title { font-family: 'Archivo', sans-serif; font-size: clamp(22px,3.5vw,44px); font-weight: 900; color: var(--white); max-width:520px; line-height:1.1; letter-spacing:-.02em; }
+
+    @media (max-width: 960px) {
+      .filter-strip { top: var(--nav-h); }
+      .featured-hero { grid-template-columns: 1fr; height: auto; }
+      .fh-img { min-height: 300px; }
+      .fh-copy { padding: 40px 24px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-card.span2 { grid-column: span 2; }
+    }
+    @media (max-width: 580px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-card.span2 { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- UTILITY BAR -->
+  <div class="util-bar">
+    <a href="index.html#contact">Contact Us</a>
+    <div class="util-divider"></div>
+    <a href="tel:+17183262818">+1 718 326 2818</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="site-nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="https://fpscontracting.com/share/images/FPS-logo-bg-white.svg" alt="FPS Contracting"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="nav-logo-fallback">FPS Contracting</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+      </ul>
+      <a class="nav-contact" href="index.html#contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://fpscontracting.com/share/images/galleries/slider_home/construction.jpg')"></div>
+    <div class="page-hero-content">
+      <div class="page-breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Projects</div>
+      <h1 class="page-hero-title">Our<br>Projects</h1>
+    </div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filter-strip">
+    <div class="wrap">
+      <div class="filter-inner">
+        <button class="filter-btn active" data-filter="all">All <span class="filter-count">6</span></button>
+        <button class="filter-btn" data-filter="completed">Completed <span class="filter-count">2</span></button>
+        <button class="filter-btn" data-filter="rendering">Before &amp; After <span class="filter-count">2</span></button>
+        <button class="filter-btn" data-filter="construction">Under Construction <span class="filter-count">2</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED HERO CARD -->
+  <div class="featured-hero" id="feat-hero" data-category="completed">
+    <div class="fh-img">
+      <img src="https://fpscontracting.com/share/images/galleries/completeproject/IMG_2466-N.JPEG"
+           alt="Interior Renovation"
+           onerror="this.style.background='#1c2530'; this.style.minHeight='400px'; this.src=''">
+    </div>
+    <div class="fh-copy">
+      <span class="fh-tag">Completed Project</span>
+      <h2 class="fh-title">Interior Renovation,<br>New York</h2>
+      <p class="fh-desc">A full interior renovation completed by our in-house crews — on schedule, within budget, and to the highest quality standards.</p>
+      <a class="more-link more-link-white" href="#">View Details <span class="arr">→</span></a>
+    </div>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <section class="gallery-section">
+    <div class="wrap" style="padding-top:48px; padding-bottom:32px;">
+      <span class="eyebrow reveal">Portfolio</span>
+      <h2 class="heading-lg reveal">Quality &amp; Workmanship</h2>
+    </div>
+    <div class="wrap">
+      <div class="gallery-grid" id="gallery">
+
+        <div class="gallery-card span2 reveal" data-category="completed">
+          <img class="gc-img" src="https://fpscontracting.com/share/images/galleries/completeproject/IMG_2467-N.JPEG"
+               alt="Construction Project"
+               onerror="this.style.background='#1c2430'; this.style.minHeight='360px'; this.src=''">
+          <div class="gc-overlay"></div>
+          <div class="gc-info"><span class="gc-cat">Completed</span><div class="gc-title">Commercial Construction Project</div></div>
+          <div class="gc-strip"><span class="gc-strip-cat">Completed Project</span><div class="gc-strip-title">Commercial Construction Project</div></div>
+        </div>
+
+        <div class="gallery-card reveal" data-category="rendering">
+          <img class="gc-img" src="https://fpscontracting.com/share/images/galleries/rendering_before___assignment_completed/18620211_10155300407709648_1545641833370757801_n.jpg"
+               alt="Before and After"
+               onerror="this.style.background='#1e1f26'; this.style.minHeight='280px'; this.src=''">
+          <div class="gc-overlay"></div>
+          <div class="gc-info"><span class="gc-cat">Before &amp; After</span><div class="gc-title">Rendering / Assignment Completed</div></div>
+          <div class="gc-strip"><span class="gc-strip-cat">Before &amp; After</span><div class="gc-strip-title">Rendering / Assignment Completed</div></div>
+        </div>
+
+        <div class="gallery-card reveal" data-category="rendering">
+          <img class="gc-img" src="https://fpscontracting.com/share/images/galleries/rendering_before___assignment_completed/18557252_10155300407669648_1180948436260023859_n.jpg"
+               alt="Before and After"
+               onerror="this.style.background='#1a1e27'; this.style.minHeight='280px'; this.src=''">
+          <div class="gc-overlay"></div>
+          <div class="gc-info"><span class="gc-cat">Before &amp; After</span><div class="gc-title">Rendering / Assignment Completed</div></div>
+          <div class="gc-strip"><span class="gc-strip-cat">Before &amp; After</span><div class="gc-strip-title">Rendering / Assignment Completed</div></div>
+        </div>
+
+        <div class="gallery-card reveal" data-category="construction">
+          <img class="gc-img" src="https://fpscontracting.com/share/images/galleries/under_construction/IMG_0755-N.JPG"
+               alt="Under Construction"
+               onerror="this.style.background='#182025'; this.style.minHeight='280px'; this.src=''">
+          <div class="gc-overlay"></div>
+          <div class="gc-info"><span class="gc-cat">Under Construction</span><div class="gc-title">Active Build</div></div>
+          <div class="gc-strip"><span class="gc-strip-cat">Under Construction</span><div class="gc-strip-title">Active Build — New York</div></div>
+        </div>
+
+        <div class="gallery-card span2 reveal" data-category="construction">
+          <img class="gc-img" src="https://fpscontracting.com/share/images/galleries/under_construction/IMG_1153-N.JPG"
+               alt="Under Construction"
+               onerror="this.style.background='#161d24'; this.style.minHeight='280px'; this.src=''">
+          <div class="gc-overlay"></div>
+          <div class="gc-info"><span class="gc-cat">Under Construction</span><div class="gc-title">Active Build</div></div>
+          <div class="gc-strip"><span class="gc-strip-cat">Under Construction</span><div class="gc-strip-title">Active Build — New York</div></div>
+        </div>
+
+        <div class="gallery-empty" id="gallery-empty">No projects in this category.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="project-cta">
+    <div class="wrap">
+      <div class="pcta-inner">
+        <h2 class="pcta-title">Ready to add your project to our portfolio?</h2>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-outline-w" href="index.html#contact">Contact Us →</a>
+          <a class="btn" style="background:var(--white); color:var(--navy);" href="services.html">Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <img class="footer-logo" src="https://fpscontracting.com/share/images/FPS-logo-bg-white.svg" alt="FPS Contracting"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="footer-logo-fb">FPS <span>Contracting</span></span>
+          <p class="footer-tagline">Premier general contractor serving New York City and the metropolitan area since the 1990s.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/FPSContracting" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Work</div>
+          <ul class="footer-links">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="projects.html">Our Projects</a></li>
+            <li><a href="services.html#markets">Markets</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-contact-line"><a href="https://goo.gl/maps/JnCL2ajfk4S2" target="_blank">5830 Maspeth Ave<br>Maspeth, NY 11378</a></div>
+          <div class="footer-contact-line"><a href="tel:+17183262818">+1 718 326 2818</a></div>
+          <div class="footer-contact-line"><a href="mailto:fpscontracting@gmail.com">fpscontracting@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 FPS Contracting Inc. All rights reserved.</div>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lb">
+    <button class="lb-close" id="lb-close">✕</button>
+    <button class="lb-btn lb-prev" id="lb-prev">&#8249;</button>
+    <img class="lb-img" id="lb-img" src="" alt="">
+    <button class="lb-btn lb-next" id="lb-next">&#8250;</button>
+    <div class="lb-cap">
+      <span class="lb-cap-cat" id="lb-cat"></span>
+      <span class="lb-cap-title" id="lb-title"></span>
+    </div>
+  </div>
+
+  <script>
+    // Nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+    // Reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 90); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Filter
+    const cards   = [...document.querySelectorAll('.gallery-card')];
+    const featHero = document.getElementById('feat-hero');
+    const filterBtns = [...document.querySelectorAll('.filter-btn')];
+    const emptyMsg = document.getElementById('gallery-empty');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.filter;
+        // Featured hero visibility
+        featHero.style.display = (cat === 'all' || cat === 'completed') ? '' : 'none';
+        let vis = 0;
+        cards.forEach(card => {
+          const show = cat === 'all' || card.dataset.category === cat;
+          card.classList.toggle('hidden', !show);
+          if (show) vis++;
+        });
+        emptyMsg.classList.toggle('show', vis === 0);
+      });
+    });
+
+    // Lightbox
+    let lbIdx = 0;
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lb-img');
+    const lbCat = document.getElementById('lb-cat');
+    const lbTitle = document.getElementById('lb-title');
+
+    function visCards() { return cards.filter(c => !c.classList.contains('hidden')); }
+    function openLb(idx) {
+      lbIdx = idx;
+      const card = visCards()[lbIdx];
+      if (!card) return;
+      lbImg.src = card.querySelector('.gc-img').src;
+      lbCat.textContent = card.querySelector('.gc-strip-cat').textContent;
+      lbTitle.textContent = card.querySelector('.gc-strip-title').textContent;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => { openLb(visCards().indexOf(card)); });
+    });
+    document.getElementById('lb-close').addEventListener('click', closeLb);
+    document.getElementById('lb-prev').addEventListener('click', () => { const v = visCards(); openLb((lbIdx - 1 + v.length) % v.length); });
+    document.getElementById('lb-next').addEventListener('click', () => { const v = visCards(); openLb((lbIdx + 1) % v.length); });
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      const v = visCards();
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowLeft')  openLb((lbIdx - 1 + v.length) % v.length);
+      if (e.key === 'ArrowRight') openLb((lbIdx + 1) % v.length);
+    });
+  </script>
+</body>
+</html>
