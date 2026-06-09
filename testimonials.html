@@ -149,6 +149,9 @@
         <li><a href="projects.html">Projects</a></li>
         <li><a href="testimonials.html" class="active">Testimonials</a></li>
       </ul>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
       <a class="nav-contact" href="index.html#contact">Contact Us</a>
     </div>
   </nav>
@@ -460,6 +463,23 @@
         title.textContent = it.dataset.name;
         open.href = pdf; dl.href = pdf;
       }));
+    })();
+  </script>
+  <script>
+    (function() {
+      var burger = document.getElementById('nav-burger');
+      var links = document.querySelector('.nav-links');
+      if (!burger || !links) return;
+      burger.addEventListener('click', function() {
+        burger.classList.toggle('open');
+        links.classList.toggle('open');
+      });
+      links.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          burger.classList.remove('open');
+          links.classList.remove('open');
+        });
+      });
     })();
   </script>
 </body>
