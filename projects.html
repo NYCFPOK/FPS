@@ -199,11 +199,11 @@
   <div class="filter-strip">
     <div class="wrap">
       <div class="filter-inner">
-        <button class="filter-btn active" data-filter="all">All <span class="filter-count">25</span></button>
+        <button class="filter-btn active" data-filter="all">All <span class="filter-count">22</span></button>
         <button class="filter-btn" data-filter="institutional">Institutional <span class="filter-count">1</span></button>
         <button class="filter-btn" data-filter="residential">Residential <span class="filter-count">5</span></button>
         <button class="filter-btn" data-filter="healthcare">Healthcare <span class="filter-count">3</span></button>
-        <button class="filter-btn" data-filter="commercial">Commercial <span class="filter-count">5</span></button>
+        <button class="filter-btn" data-filter="commercial">Commercial <span class="filter-count">2</span></button>
         <button class="filter-btn" data-filter="office">Office &amp; Corporate <span class="filter-count">3</span></button>
         <button class="filter-btn" data-filter="hospitality">Hospitality <span class="filter-count">2</span></button>
         <button class="filter-btn" data-filter="facade">Facade &amp; Masonry <span class="filter-count">2</span></button>
@@ -349,50 +349,14 @@
           <span class="proj-arrow">→</span>
         </div>
 
-        <!-- 10. Grand Lobby Renovation -->
-        <div class="proj-card reveal" data-category="commercial" data-project="grand-lobby">
-          <div class="proj-img"><img src="images/projects/grand-lobby/01-lobby-entry-stone-wall.jpg" alt="Grand Lobby Renovation" loading="lazy"></div>
-          <div class="proj-gradient"></div>
-          <div class="proj-info">
-            <span class="proj-cat">Commercial</span>
-            <div class="proj-name">Grand Lobby Renovation</div>
-            <div class="proj-loc">New York, NY</div>
-          </div>
-          <span class="proj-arrow">→</span>
-        </div>
-
-        <!-- 11. Dime Bank Branch -->
+        <!-- 10. Dime Bank Branch -->
         <div class="proj-card reveal" data-category="commercial" data-project="dime-bank">
-          <div class="proj-img"><img src="images/projects/dime-bank/05-teller-station-close.jpg" alt="Dime Bank Branch" loading="lazy"></div>
+          <div class="proj-img"><img src="images/projects/grand-lobby/01-lobby-entry-stone-wall.jpg" alt="Dime Bank Branch Renovation" loading="lazy"></div>
           <div class="proj-gradient"></div>
           <div class="proj-info">
             <span class="proj-cat">Commercial</span>
-            <div class="proj-name">Dime Bank Branch</div>
+            <div class="proj-name">Dime Bank Branch Renovation</div>
             <div class="proj-loc">New York Metro Area</div>
-          </div>
-          <span class="proj-arrow">→</span>
-        </div>
-
-        <!-- 12. Commercial Interior -->
-        <div class="proj-card reveal" data-category="commercial" data-project="commercial-interior">
-          <div class="proj-img"><img src="images/projects/commercial-interior/01-wave-wall-dome-lights.jpg" alt="Commercial Interior" loading="lazy"></div>
-          <div class="proj-gradient"></div>
-          <div class="proj-info">
-            <span class="proj-cat">Commercial</span>
-            <div class="proj-name">Commercial Interior</div>
-            <div class="proj-loc">New York, NY</div>
-          </div>
-          <span class="proj-arrow">→</span>
-        </div>
-
-        <!-- 13. Corporate Boardroom -->
-        <div class="proj-card reveal" data-category="commercial" data-project="commercial-boardroom">
-          <div class="proj-img"><img src="images/projects/commercial-boardroom/01-boardroom-dome-pendants.jpg" alt="Corporate Boardroom" loading="lazy"></div>
-          <div class="proj-gradient"></div>
-          <div class="proj-info">
-            <span class="proj-cat">Commercial</span>
-            <div class="proj-name">Corporate Boardroom</div>
-            <div class="proj-loc">New York, NY</div>
           </div>
           <span class="proj-arrow">→</span>
         </div>
@@ -658,6 +622,7 @@
         {src:'images/projects/new-construction/02-roof-rafters.jpg',title:'Roof Rafters'},
         {src:'images/projects/new-construction/03-drywall-finishing.jpg',title:'Drywall'},
         {src:'images/projects/new-construction/04-roof-framing-alt.jpg',title:'Roof Framing'},
+        {src:'images/projects/commercial-interior/01-wave-wall-dome-lights.jpg',title:'Structural Framing'},
       ]},
       'foundation-excavation': { name: 'Foundation & Excavation', cat: 'Residential', photos: [
         {src:'images/projects/foundation-excavation/01-excavation-building.jpg',title:'Excavation'},
@@ -710,6 +675,7 @@
         'images/projects/healthcare-facility/43-lobby-aquarium-living-wall.jpg',
         'images/projects/healthcare-facility/44-waiting-room-autumn-art.jpg',
         'images/projects/healthcare-facility/45-infusion-treatment-center.jpg',
+        'images/projects/corporate-reception/05-grand-reception-desk.jpg',
       ].map((src,i) => ({src, title:`Photo ${i+1}`}))},
       'rehabilitation-center': { name: 'Rehabilitation Center', cat: 'Healthcare', photos: [
         {src:'images/projects/rehabilitation-center/01-activity-corridor-colorful.jpg',title:'Activity Corridor'},
@@ -731,19 +697,12 @@
         {src:'images/projects/commercial-lobby/03-mortar-troweling.jpg',title:'Mortar Work'},
         {src:'images/projects/commercial-lobby/04-tile-layout-planning.jpg',title:'Tile Layout'},
       ]},
-      'grand-lobby': { name: 'Grand Lobby Renovation', cat: 'Commercial', photos: [
-        {src:'images/projects/grand-lobby/01-lobby-entry-stone-wall.jpg',title:'Lobby Entry'},
-        {src:'images/projects/grand-lobby/02-stone-accent-wall-bench.jpg',title:'Stone Accent Wall'},
-      ]},
-      'dime-bank': { name: 'Dime Bank Branch', cat: 'Commercial', photos: [
-        {src:'images/projects/dime-bank/05-teller-station-close.jpg',title:'Teller Station'},
+      'dime-bank': { name: 'Dime Bank Branch Renovation', cat: 'Commercial', photos: [
+        {src:'images/projects/grand-lobby/01-lobby-entry-stone-wall.jpg',title:'Main Banking Floor'},
+        {src:'images/projects/grand-lobby/02-stone-accent-wall-bench.jpg',title:'Teller Area'},
         {src:'images/projects/dime-bank/06-glass-partition-entry.jpg',title:'Glass Entry'},
-      ]},
-      'commercial-interior': { name: 'Commercial Interior', cat: 'Commercial', photos: [
-        {src:'images/projects/commercial-interior/01-wave-wall-dome-lights.jpg',title:'Interior'},
-      ]},
-      'commercial-boardroom': { name: 'Corporate Boardroom', cat: 'Commercial', photos: [
-        {src:'images/projects/commercial-boardroom/01-boardroom-dome-pendants.jpg',title:'Boardroom'},
+        {src:'images/projects/dime-bank/05-teller-station-close.jpg',title:'Customer Lounge'},
+        {src:'images/projects/commercial-boardroom/01-boardroom-dome-pendants.jpg',title:'Private Meeting Room'},
       ]},
       'office-renovation': { name: 'Office Renovation', cat: 'Office & Corporate', photos: [
         {src:'images/projects/office-renovation/01-open-plan-office.jpg',title:'Open Plan'},
@@ -764,7 +723,6 @@
         {src:'images/projects/corporate-reception/02-reception-desk-detail.jpg',title:'Reception Detail'},
         {src:'images/projects/corporate-reception/03-reception-desk-wide.jpg',title:'Reception Wide'},
         {src:'images/projects/corporate-reception/04-reception-desk-angle.png',title:'Reception Angle'},
-        {src:'images/projects/corporate-reception/05-grand-reception-desk.jpg',title:'Grand Reception'},
       ]},
       'executive-suite': { name: 'Executive Suite', cat: 'Office & Corporate', photos: [
         {src:'images/projects/executive-suite/01-kitchen-lounge-composite.png',title:'Kitchen & Lounge'},
