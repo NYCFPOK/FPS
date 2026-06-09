@@ -54,9 +54,16 @@
     }
     .hero-eyebrow {
       font-family: 'Archivo', sans-serif;
-      font-size: 10px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase;
-      color: rgba(255,255,255,.45); margin-bottom: 16px; display: block;
+      font-size: 11px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); margin-bottom: 12px; display: block;
     }
+    .hero-brand {
+      font-family: 'Archivo', sans-serif; font-weight: 900;
+      font-size: clamp(26px, 3.2vw, 46px); line-height: 1; letter-spacing: .005em;
+      text-transform: uppercase; color: var(--white); display: block; margin-bottom: 18px;
+      text-shadow: 0 2px 24px rgba(0,0,0,.35);
+    }
+    .hero-brand em { font-style: normal; color: #4ea3e8; }
     .hero-headline {
       font-family: 'Archivo', sans-serif;
       font-size: clamp(56px, 9vw, 116px); font-weight: 900; color: var(--white);
@@ -335,12 +342,13 @@
     <div class="hero-content">
       <div class="hero-main">
         <span class="hero-eyebrow">Premier General Contractor — New York</span>
+        <span class="hero-brand">FPS <em>Contracting</em></span>
         <h1 class="hero-headline">Built<br>to Last.</h1>
       </div>
       <div class="hero-project">
         <span class="hero-project-label">Featured Work</span>
         <div class="hero-project-name" id="hero-proj-name">
-          <a href="projects.html">Commercial Interiors, NYC</a>
+          <a href="projects.html">Bronxville Luxury Apartment Renovation</a>
         </div>
       </div>
     </div>

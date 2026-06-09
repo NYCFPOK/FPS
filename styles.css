@@ -55,14 +55,14 @@ body {
 }
 .nav-logo { margin-right: auto; text-decoration: none; display: flex; align-items: center; gap: 12px; }
 .nav-logo img { height: 44px; display: block; }
-.nav-logo-mark { height: 52px; width: 52px; display: block; border-radius: 50%; }
+.nav-logo-mark { height: 66px; width: 66px; display: block; border-radius: 50%; }
 .nav-logo-word {
-  font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 17px;
+  font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 19px;
   letter-spacing: .02em; color: var(--navy); text-transform: uppercase; line-height: 1;
 }
 .nav-logo-word small {
-  display: block; font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700;
-  letter-spacing: .26em; color: var(--blue); margin-top: 4px;
+  display: block; font-family: 'Archivo', sans-serif; font-size: 9.5px; font-weight: 700;
+  letter-spacing: .24em; color: var(--blue); margin-top: 4px;
 }
 .nav-logo-fallback {
   font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 18px;
