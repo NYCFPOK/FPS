@@ -46,6 +46,13 @@
       color: var(--white); letter-spacing: -.01em;
     }
     .tm-role { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 5px; line-height: 1.5; }
+    .tm-pdf-link {
+      display: inline-flex; align-items: center; gap: 7px; margin-top: 18px;
+      font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--blue); text-decoration: none; transition: opacity .2s;
+    }
+    .tm-pdf-link:hover { opacity: .75; }
 
     /* ── CLIENTS STRIP ── */
     .clients-section { background: var(--white); padding: 64px 0; border-top: 1px solid var(--border); }
@@ -292,6 +299,10 @@
             <div class="tm-name">Barbara Kaplan</div>
             <div class="tm-role">Director, Association for the Help of Retarded Children (AHRC Nassau)</div>
           </div>
+          <a href="files/st-hildas-house.pdf" target="_blank" rel="noopener" class="tm-pdf-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            View St. Hilda's House Case Study
+          </a>
         </div>
 
       </div>
