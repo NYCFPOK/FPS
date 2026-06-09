@@ -9,31 +9,58 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ── TESTIMONIAL CARDS ── */
-    .tm-section { padding: 80px 0 40px; }
+    .tm-section { padding: 96px 0 72px; background: var(--off); }
     .tm-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
-      margin-top: 48px;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 72px 40px;
+      margin-top: 80px;
     }
     .tm-card {
-      background: var(--white); border: 1px solid var(--border);
-      padding: 40px 36px; display: flex; flex-direction: column;
-      position: relative; transition: box-shadow .25s, transform .25s, border-color .25s;
+      background: var(--navy); border-radius: 4px;
+      padding: 48px 36px 36px; display: flex; flex-direction: column;
+      position: relative; margin-top: 52px; text-align: center;
+      transition: box-shadow .25s, transform .25s;
     }
-    .tm-card:hover { box-shadow: 0 18px 50px rgba(12,45,78,.10); transform: translateY(-4px); border-color: transparent; }
+    .tm-card:hover { box-shadow: 0 24px 60px rgba(0,0,0,.22); transform: translateY(-5px); }
+    .tm-logo-badge {
+      position: absolute; top: -52px; left: 50%; transform: translateX(-50%);
+      width: 100px; height: 100px; background: var(--white); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px; box-shadow: 0 8px 28px rgba(0,0,0,.18);
+    }
+    .tm-logo-badge img { max-width: 74px; max-height: 74px; object-fit: contain; border-radius: 50%; }
+    .tm-logo-initial {
+      font-family: 'Archivo', sans-serif; font-size: 28px; font-weight: 900;
+      color: var(--navy); line-height: 1; letter-spacing: -.02em;
+    }
     .tm-quote-mark {
-      font-family: Georgia, serif; font-size: 80px; line-height: .6;
-      color: var(--blue); opacity: .18; margin-bottom: 18px; display: block;
+      font-family: Georgia, serif; font-size: 72px; line-height: .7;
+      color: var(--blue); opacity: .55; margin-bottom: 14px; display: block;
     }
     .tm-text {
-      font-size: 16px; line-height: 1.7; color: var(--ink); font-weight: 400;
+      font-size: 15px; line-height: 1.8; color: rgba(255,255,255,.78); font-style: italic;
       margin-bottom: 28px; flex: 1;
     }
-    .tm-attr { border-top: 1px solid var(--border); padding-top: 20px; }
+    .tm-attr { border-top: 1px solid rgba(255,255,255,.12); padding-top: 20px; }
     .tm-name {
-      font-family: 'Archivo', sans-serif; font-size: 14px; font-weight: 800;
-      color: var(--navy); letter-spacing: -.01em;
+      font-family: 'Archivo', sans-serif; font-size: 15px; font-weight: 800;
+      color: var(--white); letter-spacing: -.01em;
     }
-    .tm-role { font-size: 12px; color: var(--gray); margin-top: 4px; line-height: 1.5; }
+    .tm-role { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 5px; line-height: 1.5; }
+
+    /* ── CLIENTS STRIP ── */
+    .clients-section { background: var(--white); padding: 64px 0; border-top: 1px solid var(--border); }
+    .clients-strip {
+      display: flex; align-items: center; justify-content: center;
+      gap: 52px; flex-wrap: wrap; margin-top: 36px;
+    }
+    .clients-strip img {
+      height: 68px; width: auto; max-width: 140px; object-fit: contain;
+      filter: grayscale(1); opacity: .45; transition: all .35s;
+    }
+    .clients-strip img:hover { filter: grayscale(0); opacity: 1; }
+
+    @media (max-width: 960px) { .tm-grid { gap: 72px 24px; } }
+    @media (max-width: 680px) { .tm-grid { grid-template-columns: 1fr; } .clients-strip { gap: 32px; } }
 
     /* ── LETTERS OF REFERENCE (embedded viewer) ── */
     .letters-section { background: var(--off); padding: 80px 0; }
@@ -80,7 +107,6 @@
     .letter-fallback a { color: var(--blue); text-decoration: none; font-weight: 600; }
 
     @media (max-width: 960px) {
-      .tm-grid { grid-template-columns: 1fr; }
       .letters-viewer { grid-template-columns: 1fr; }
       .letter-list { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
       .letter-item { min-width: 230px; flex-shrink: 0; }
@@ -107,7 +133,7 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#about">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="testimonials.html" class="active">Testimonials</a></li>
@@ -134,7 +160,11 @@
       <p class="body-lg reveal" style="max-width:600px;">For over 30 years, owners, architects, and institutions have returned to FPS Contracting project after project. Here's what a few of them have to say about working with us.</p>
 
       <div class="tm-grid">
+
         <div class="tm-card reveal">
+          <div class="tm-logo-badge">
+            <img src="images/logos/grand-healthcare.png" alt="The Grand Healthcare System">
+          </div>
           <span class="tm-quote-mark">&ldquo;</span>
           <p class="tm-text">FPS Contracting has more than exceeded our expectations for construction. Their professionalism, ideas and diligence are outstanding. From my perspective, we have the nicest nursing homes and corporate offices in all of New York State, thanks to their hard work.</p>
           <div class="tm-attr">
@@ -144,6 +174,57 @@
         </div>
 
         <div class="tm-card reveal">
+          <div class="tm-logo-badge">
+            <img src="images/logos/suny-hsc.png" alt="SUNY Health Science Center at Brooklyn">
+          </div>
+          <span class="tm-quote-mark">&ldquo;</span>
+          <p class="tm-text">We found that the quality and work provided by FPS and their subcontractors to be more than excellent. They are extremely reliable and dependable. I am pleased to highly recommend them.</p>
+          <div class="tm-attr">
+            <div class="tm-name">Pascal James Imperato, MD, MPH &amp; TM</div>
+            <div class="tm-role">SUNY Downstate Medical Center</div>
+          </div>
+        </div>
+
+        <div class="tm-card reveal">
+          <div class="tm-logo-badge">
+            <span class="tm-logo-initial">V</span>
+          </div>
+          <span class="tm-quote-mark">&ldquo;</span>
+          <p class="tm-text">I can say without reservation that FPS is the finest construction firm that I've had the opportunity to work with. We have had the pleasure of working with FPS Contracting Inc. for over fifteen years. I would recommend FPS for any of our construction needs.</p>
+          <div class="tm-attr">
+            <div class="tm-name">James E. Vassalotti II, R.A.</div>
+            <div class="tm-role">Vassalotti Associates, Architects LLP</div>
+          </div>
+        </div>
+
+        <div class="tm-card reveal">
+          <div class="tm-logo-badge">
+            <span class="tm-logo-initial">W</span>
+          </div>
+          <span class="tm-quote-mark">&ldquo;</span>
+          <p class="tm-text">FPS has completed work in a timely, efficient, and professional manner. Their oversight and work ethic has been most notable. FPS has maintained the anticipated work schedule, even with delays generated by the Village, and has produced an outstanding product.</p>
+          <div class="tm-attr">
+            <div class="tm-name">Thomas V. Savino</div>
+            <div class="tm-role">Village Clerk-Treasurer, Village of Westbury</div>
+          </div>
+        </div>
+
+        <div class="tm-card reveal">
+          <div class="tm-logo-badge">
+            <span class="tm-logo-initial">T</span>
+          </div>
+          <span class="tm-quote-mark">&ldquo;</span>
+          <p class="tm-text">All companies look good when things go as planned&hellip; but what really sets you apart is your ability to deal with the unexpected&hellip; In your case you shined.</p>
+          <div class="tm-attr">
+            <div class="tm-name">Eve Hazel, Ph.D</div>
+            <div class="tm-role">Executive Director, Transitional Services for New York Inc.</div>
+          </div>
+        </div>
+
+        <div class="tm-card reveal">
+          <div class="tm-logo-badge">
+            <span class="tm-logo-initial">K</span>
+          </div>
           <span class="tm-quote-mark">&ldquo;</span>
           <p class="tm-text">I can say without question that Peter Alesci and his entire team are a pleasure to work with. They develop a plan, set a schedule and do everything possible to stick to it. Their workmanship is exceptional &mdash; there are never any surprises.</p>
           <div class="tm-attr">
@@ -153,6 +234,9 @@
         </div>
 
         <div class="tm-card reveal">
+          <div class="tm-logo-badge">
+            <span class="tm-logo-initial">S</span>
+          </div>
           <span class="tm-quote-mark">&ldquo;</span>
           <p class="tm-text">I am exceedingly impressed with their professionalism, expertise, and commitment to delivering exceptional results. FPS demonstrated a commitment to high-level results in every aspect of their work, delivering on schedule and within budget.</p>
           <div class="tm-attr">
@@ -162,6 +246,9 @@
         </div>
 
         <div class="tm-card reveal">
+          <div class="tm-logo-badge">
+            <span class="tm-logo-initial">M</span>
+          </div>
           <span class="tm-quote-mark">&ldquo;</span>
           <p class="tm-text">They have demonstrated exceptional knowledge of construction methods and means, a commitment to quality, and a high level of professionalism. The entire Alesci team and FPS Contracting have continually delivered outstanding projects.</p>
           <div class="tm-attr">
@@ -170,23 +257,19 @@
           </div>
         </div>
 
-        <div class="tm-card reveal">
-          <span class="tm-quote-mark">&ldquo;</span>
-          <p class="tm-text">We have had the pleasure of working with FPS Contracting for over 25 years. They consistently deliver excellent workmanship, complete projects on schedule, and uphold a high standard of professionalism. We highly recommend them.</p>
-          <div class="tm-attr">
-            <div class="tm-name">James E. Vassalotti III, R.A.</div>
-            <div class="tm-role">James E. Vassalotti III, Architects, P.C.</div>
-          </div>
-        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="tm-card reveal">
-          <span class="tm-quote-mark">&ldquo;</span>
-          <p class="tm-text">We found that the quality and work provided by FPS and their subcontractors to be more than excellent. They are extremely reliable and dependable.</p>
-          <div class="tm-attr">
-            <div class="tm-name">Pascal James Imperato, MD</div>
-            <div class="tm-role">SUNY Downstate Medical Center</div>
-          </div>
-        </div>
+  <!-- TRUSTED BY -->
+  <section class="clients-section">
+    <div class="wrap">
+      <span class="eyebrow reveal" style="text-align:center; display:block;">Trusted By</span>
+      <div class="clients-strip reveal">
+        <img src="images/logos/grand-healthcare.png" alt="The Grand Healthcare System">
+        <img src="images/logos/suny-hsc.png" alt="SUNY Health Science Center at Brooklyn">
+        <img src="images/logos/yai.png" alt="YAI">
+        <img src="images/logos/ahrc-nassau.png" alt="AHRC Nassau">
       </div>
     </div>
   </section>
@@ -254,8 +337,11 @@
           <img class="footer-logo-circle" src="images/fps-logo-circle.png" alt="FPS Contracting Inc.">
           <p class="footer-tagline">Premier general contractor serving New York City and the metropolitan area since the 1990s.</p>
           <div class="footer-social">
-            <a href="https://www.facebook.com/FPSContracting" target="_blank">
+            <a href="https://www.facebook.com/FPSContracting" target="_blank" title="Facebook">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/fps_contracting/" target="_blank" title="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
           </div>
         </div>
@@ -263,7 +349,7 @@
           <div class="footer-col-title">Company</div>
           <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="about.html">About Us</a></li>
             <li><a href="testimonials.html">Testimonials</a></li>
           </ul>
         </div>
