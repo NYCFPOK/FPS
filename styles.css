@@ -55,7 +55,11 @@ body {
 }
 .nav-logo { margin-right: auto; text-decoration: none; display: flex; align-items: center; gap: 12px; }
 .nav-logo img { height: 44px; display: block; }
-.nav-logo-mark { height: 72px; width: 72px; display: block; border-radius: 50%; object-fit: cover; }
+.nav-logo-mark {
+  height: 60px; width: 60px; display: block; border-radius: 50%;
+  transition: transform .3s ease;
+}
+.nav-logo:hover .nav-logo-mark { transform: scale(1.15); }
 .nav-logo-word {
   font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 19px;
   letter-spacing: .02em; color: var(--navy); text-transform: uppercase; line-height: 1;
