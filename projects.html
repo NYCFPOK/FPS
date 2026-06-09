@@ -8,228 +8,155 @@
   <link rel="apple-touch-icon" href="images/favicon-180.png">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ── FILTER ── */
-    .filter-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky; top: calc(var(--nav-h) + 34px); z-index: 99;
-    }
-    .filter-inner { display: flex; align-items: center; overflow-x: auto; }
-    .filter-btn {
-      flex-shrink: 0; background: none; border: none; cursor: pointer;
-      font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 700;
-      letter-spacing: .15em; text-transform: uppercase; color: var(--gray);
-      padding: 20px 26px; position: relative; transition: color .2s;
-    }
-    .filter-btn::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: var(--blue); transform: scaleX(0); transition: transform .25s;
-    }
-    .filter-btn:hover { color: var(--navy); }
-    .filter-btn.active { color: var(--navy); }
-    .filter-btn.active::after { transform: scaleX(1); }
-    .filter-count {
-      margin-left: 6px; font-size: 10px; font-weight: 700;
-      color: var(--blue); background: rgba(15,110,191,.1);
-      padding: 1px 7px; border-radius: 20px;
-    }
+/* ── FILTER STRIP ── */
+.filter-strip {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  position: sticky; top: calc(var(--nav-h) + 34px); z-index: 99;
+}
+.filter-inner { display: flex; align-items: center; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.filter-inner::-webkit-scrollbar { display: none; }
+.filter-btn {
+  flex-shrink: 0; background: none; border: none; cursor: pointer;
+  font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--gray);
+  padding: 20px 24px; position: relative; transition: color .2s; white-space: nowrap;
+}
+.filter-btn::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--blue); transform: scaleX(0); transition: transform .25s;
+}
+.filter-btn:hover { color: var(--navy); }
+.filter-btn.active { color: var(--navy); }
+.filter-btn.active::after { transform: scaleX(1); }
+.filter-count {
+  margin-left: 5px; font-size: 10px; font-weight: 700;
+  color: var(--blue); background: rgba(15,110,191,.1);
+  padding: 1px 6px; border-radius: 20px;
+}
 
-    /* ── HERO FEATURE ── */
-    .featured-hero {
-      position: relative; width: 100%; height: 620px;
-      overflow: hidden; background: var(--ink);
-    }
-    .fh-img {
-      position: absolute; inset: 0;
-    }
-    .fh-img img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
-      display: block; transition: transform .9s ease;
-    }
-    .featured-hero:hover .fh-img img { transform: scale(1.04); }
-    .fh-gradient {
-      position: absolute; inset: 0;
-      background: linear-gradient(105deg, rgba(12,20,28,.94) 0%, rgba(12,20,28,.6) 52%, rgba(12,20,28,.18) 100%);
-    }
-    .fh-copy {
-      position: absolute; bottom: 0; left: 0;
-      padding: 64px 72px; max-width: 620px;
-      display: flex; flex-direction: column;
-    }
-    .fh-tag {
-      font-family: 'Archivo', sans-serif; font-size: 10px; font-weight: 700;
-      letter-spacing: .22em; text-transform: uppercase; color: var(--blue);
-      margin-bottom: 14px; display: block;
-    }
-    .fh-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(32px, 4.5vw, 58px); font-weight: 900; color: var(--white);
-      line-height: 1.0; letter-spacing: -.025em; margin-bottom: 10px;
-    }
-    .fh-loc {
-      font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: rgba(255,255,255,.42); margin-bottom: 18px;
-    }
-    .fh-desc { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.6); margin-bottom: 24px; max-width: 520px; }
-    .fh-stats { display: flex; gap: 36px; margin-bottom: 28px; }
-    .fh-stat { display: flex; flex-direction: column; }
-    .fh-stat-n { font-family: 'Archivo', sans-serif; font-size: 22px; font-weight: 900; color: var(--white); line-height: 1; }
-    .fh-stat-l { font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: 4px; }
+/* ── FEATURED HERO ── */
+.featured-hero {
+  position: relative; width: 100%; height: 620px;
+  overflow: hidden; background: var(--ink);
+}
+.fh-img { position: absolute; inset: 0; }
+.fh-img img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+  display: block; transition: transform .9s ease;
+}
+.featured-hero:hover .fh-img img { transform: scale(1.04); }
+.fh-gradient {
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(12,20,28,.94) 0%, rgba(12,20,28,.6) 52%, rgba(12,20,28,.18) 100%);
+}
+.fh-copy {
+  position: absolute; bottom: 0; left: 0;
+  padding: 64px 72px; max-width: 620px; display: flex; flex-direction: column;
+}
+.fh-tag {
+  font-family: 'Archivo', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--blue);
+  margin-bottom: 14px; display: block;
+}
+.fh-title {
+  font-family: 'Archivo', sans-serif;
+  font-size: clamp(32px, 4.5vw, 58px); font-weight: 900; color: var(--white);
+  line-height: 1.0; letter-spacing: -.025em; margin-bottom: 10px;
+}
+.fh-loc {
+  font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.42); margin-bottom: 18px;
+}
+.fh-desc { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.6); margin-bottom: 24px; max-width: 520px; }
+.fh-stats { display: flex; gap: 36px; margin-bottom: 28px; }
+.fh-stat { display: flex; flex-direction: column; }
+.fh-stat-n { font-family: 'Archivo', sans-serif; font-size: 22px; font-weight: 900; color: var(--white); line-height: 1; }
+.fh-stat-l { font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: 4px; }
 
-    /* ── PROJECT GROUP HEADER ── */
-    .group-head { padding: 56px 0 8px; }
-    .group-head.hidden { display: none; }
-    .group-title {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(22px, 2.6vw, 34px); font-weight: 800; color: var(--navy);
-      letter-spacing: -.02em; line-height: 1.1;
-    }
-    .group-meta { font-size: 13px; color: var(--gray); margin-top: 8px; line-height: 1.7; max-width: 640px; }
+/* ── PROJECT GRID ── */
+.proj-section { padding: 80px 0 96px; }
+.proj-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 52px;
+}
+.proj-card {
+  position: relative; overflow: hidden; background: var(--ink);
+  cursor: pointer; aspect-ratio: 4/3;
+}
+.proj-card.hidden { display: none; }
+.proj-img { position: absolute; inset: 0; }
+.proj-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s ease; }
+.proj-card:hover .proj-img img { transform: scale(1.07); }
+.proj-gradient {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(12,20,28,.82) 0%, rgba(12,20,28,.18) 50%, transparent 75%);
+}
+.proj-info {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 22px 22px 20px;
+  transition: transform .35s;
+}
+.proj-card:hover .proj-info { transform: translateY(-4px); }
+.proj-cat {
+  font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--blue);
+  display: block; margin-bottom: 5px;
+}
+.proj-name {
+  font-family: 'Archivo', sans-serif; font-size: 16px; font-weight: 800;
+  color: var(--white); line-height: 1.2;
+}
+.proj-loc { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 3px; }
+.proj-arrow {
+  position: absolute; bottom: 22px; right: 20px;
+  color: var(--white); font-family: 'Archivo', sans-serif; font-size: 16px; font-weight: 900;
+  opacity: 0; transform: translateX(-8px); transition: all .35s;
+}
+.proj-card:hover .proj-arrow { opacity: 1; transform: none; }
 
-    /* ── GRID ── */
-    .gallery-section { padding: 0 0 80px; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3px;
-    }
-    .gallery-card {
-      position: relative; overflow: hidden; background: var(--ink);
-      cursor: pointer;
-    }
-    .gallery-card.span2 { grid-column: span 2; }
-    .gallery-card.hidden { display: none; }
+/* ── LIGHTBOX ── */
+.lb {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(10,16,24,.97);
+  display: none; align-items: center; justify-content: center;
+}
+.lb.open { display: flex; }
+.lb-img { max-width: 88vw; max-height: 82vh; object-fit: contain; display: block; }
+.lb-close {
+  position: absolute; top: 24px; right: 32px;
+  font-size: 26px; color: rgba(255,255,255,.6); cursor: pointer;
+  background: none; border: none; transition: color .2s;
+}
+.lb-close:hover { color: var(--white); }
+.lb-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,.08); color: var(--white);
+  border: none; font-size: 26px; cursor: pointer; padding: 18px 22px;
+  transition: background .2s;
+}
+.lb-btn:hover { background: var(--blue); }
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+.lb-cap {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  text-align: center;
+}
+.lb-cap-cat { font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 4px; }
+.lb-cap-title { font-size: 13px; color: rgba(255,255,255,.55); }
+.lb-counter { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 4px; display: block; font-family: 'Archivo', sans-serif; letter-spacing: .1em; }
 
-    .gc-img {
-      width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
-      transition: transform .55s ease, opacity .3s;
-      opacity: .95;
-    }
-    .gallery-card.span2 .gc-img { aspect-ratio: 16/9; }
-    .gallery-card:hover .gc-img { transform: scale(1.06); opacity: 1; }
-
-    .gc-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(12,20,28,.88) 0%, transparent 52%);
-      opacity: 0; transition: opacity .3s;
-    }
-    .gallery-card:hover .gc-overlay { opacity: 1; }
-
-    .gc-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 22px 22px 18px;
-      transform: translateY(8px); opacity: 0; transition: all .3s;
-    }
-    .gallery-card:hover .gc-info { transform: none; opacity: 1; }
-    .gc-cat {
-      display: inline-block; font-family: 'Archivo', sans-serif;
-      font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--white); background: var(--blue);
-      padding: 3px 9px; margin-bottom: 6px;
-    }
-    .gc-title { font-family: 'Archivo', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
-
-    .gc-strip {
-      background: var(--white); padding: 14px 18px;
-      border-top: 3px solid transparent; transition: border-color .25s;
-    }
-    .gallery-card:hover .gc-strip { border-top-color: var(--blue); }
-    .gc-strip-cat { font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 3px; }
-    .gc-strip-title { font-family: 'Archivo', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); }
-
-    .gallery-empty { display: none; grid-column: 1/-1; padding: 80px; text-align: center; color: var(--gray); }
-    .gallery-empty.show { display: block; }
-
-    /* ── LIGHTBOX ── */
-    .lb {
-      position: fixed; inset: 0; z-index: 9000;
-      background: rgba(10,16,24,.96);
-      display: none; align-items: center; justify-content: center;
-    }
-    .lb.open { display: flex; }
-    .lb-img { max-width: 88vw; max-height: 86vh; object-fit: contain; display: block; }
-    .lb-close {
-      position: absolute; top: 24px; right: 32px;
-      font-size: 26px; color: rgba(255,255,255,.6); cursor: pointer;
-      background: none; border: none; transition: color .2s;
-    }
-    .lb-close:hover { color: var(--white); }
-    .lb-btn {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,.08); color: var(--white);
-      border: none; font-size: 26px; cursor: pointer; padding: 18px 22px;
-      transition: background .2s;
-    }
-    .lb-btn:hover { background: var(--blue); }
-    .lb-prev { left: 16px; }
-    .lb-next { right: 16px; }
-    .lb-cap {
-      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-      text-align: center;
-    }
-    .lb-cap-cat { font-family: 'Archivo', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 4px; }
-    .lb-cap-title { font-size: 14px; color: rgba(255,255,255,.6); }
-
-    /* ── BEFORE / AFTER SLIDER ── */
-    .ba-section { padding: 56px 0 8px; }
-    .ba-section.hidden { display: none; }
-    .ba-slider {
-      position: relative; width: 100%; aspect-ratio: 16/10;
-      overflow: hidden; user-select: none; touch-action: none;
-      background: var(--ink); cursor: ew-resize; margin-top: 28px;
-    }
-    .ba-slider img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; display: block; pointer-events: none;
-    }
-    .ba-before { clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0); }
-    .ba-divider {
-      position: absolute; top: 0; bottom: 0; left: var(--pos, 50%);
-      width: 3px; background: var(--white); transform: translateX(-1.5px);
-      pointer-events: none; box-shadow: 0 0 14px rgba(0,0,0,.4);
-    }
-    .ba-knob {
-      position: absolute; top: 50%; left: var(--pos, 50%);
-      width: 46px; height: 46px; border-radius: 50%;
-      background: var(--white); transform: translate(-50%,-50%);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,.35); pointer-events: none;
-      color: var(--navy); font-size: 16px; font-weight: 900;
-    }
-    .ba-tag {
-      position: absolute; bottom: 18px; z-index: 2;
-      font-family: 'Archivo', sans-serif; font-size: 10px; font-weight: 700;
-      letter-spacing: .18em; text-transform: uppercase; color: var(--white);
-      background: rgba(12,20,28,.72); padding: 7px 14px; pointer-events: none;
-    }
-    .ba-tag-before { left: 18px; }
-    .ba-tag-after  { right: 18px; }
-
-    /* ── CTA ── */
-    .project-cta { background: var(--blue); padding: 72px 0; }
-    .pcta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-    .pcta-title { font-family: 'Archivo', sans-serif; font-size: clamp(22px,3.5vw,44px); font-weight: 900; color: var(--white); max-width:520px; line-height:1.1; letter-spacing:-.02em; }
-
-    /* ── HIDE LEGACY ELEMENTS ── */
-    .gc-strip { display: none; }
-    .group-head { display: none !important; }
-
-    @media (max-width: 960px) {
-      .filter-strip { top: var(--nav-h); }
-      .featured-hero { height: 480px; }
-      .fh-copy { padding: 40px 28px; max-width: 100%; }
-      .fh-stats { gap: 20px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-card.span2 { grid-column: span 2; }
-    }
-    @media (max-width: 580px) {
-      .featured-hero { height: 520px; }
-      .fh-copy { padding: 32px 20px; }
-      .fh-stats { display: none; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-card.span2 { grid-column: span 1; }
-    }
+@media (max-width: 960px) {
+  .filter-strip { top: var(--nav-h); }
+  .featured-hero { height: 480px; }
+  .fh-copy { padding: 40px 28px; max-width: 100%; }
+  .proj-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+@media (max-width: 580px) {
+  .featured-hero { height: 520px; }
+  .fh-copy { padding: 32px 20px; }
+  .fh-stats { display: none; }
+  .proj-grid { grid-template-columns: 1fr; }
+}
   </style>
 </head>
 <body>
@@ -268,20 +195,20 @@
     </div>
   </div>
 
-  <!-- FILTER -->
+  <!-- FILTER STRIP -->
   <div class="filter-strip">
     <div class="wrap">
       <div class="filter-inner">
-        <button class="filter-btn active" data-filter="all">All <span class="filter-count">163</span></button>
-        <button class="filter-btn" data-filter="institutional">Institutional <span class="filter-count">5</span></button>
-        <button class="filter-btn" data-filter="residential">Residential <span class="filter-count">30</span></button>
-        <button class="filter-btn" data-filter="healthcare">Healthcare <span class="filter-count">55</span></button>
-        <button class="filter-btn" data-filter="commercial">Commercial <span class="filter-count">14</span></button>
-        <button class="filter-btn" data-filter="office">Office &amp; Corporate <span class="filter-count">23</span></button>
-        <button class="filter-btn" data-filter="hospitality">Hospitality <span class="filter-count">17</span></button>
-        <button class="filter-btn" data-filter="facade">Facade &amp; Masonry <span class="filter-count">7</span></button>
-        <button class="filter-btn" data-filter="roofing">Roofing <span class="filter-count">4</span></button>
-        <button class="filter-btn" data-filter="mep">MEP &amp; Infrastructure <span class="filter-count">8</span></button>
+        <button class="filter-btn active" data-filter="all">All <span class="filter-count">25</span></button>
+        <button class="filter-btn" data-filter="institutional">Institutional <span class="filter-count">1</span></button>
+        <button class="filter-btn" data-filter="residential">Residential <span class="filter-count">5</span></button>
+        <button class="filter-btn" data-filter="healthcare">Healthcare <span class="filter-count">3</span></button>
+        <button class="filter-btn" data-filter="commercial">Commercial <span class="filter-count">5</span></button>
+        <button class="filter-btn" data-filter="office">Office &amp; Corporate <span class="filter-count">3</span></button>
+        <button class="filter-btn" data-filter="hospitality">Hospitality <span class="filter-count">2</span></button>
+        <button class="filter-btn" data-filter="facade">Facade &amp; Masonry <span class="filter-count">2</span></button>
+        <button class="filter-btn" data-filter="roofing">Roofing <span class="filter-count">1</span></button>
+        <button class="filter-btn" data-filter="mep">MEP &amp; Infrastructure <span class="filter-count">3</span></button>
       </div>
     </div>
   </div>
@@ -306,1335 +233,314 @@
     </div>
   </div>
 
-  <!-- BEFORE / AFTER -->
-  <section class="ba-section" id="ba-section">
+  <!-- PROJECT GRID -->
+  <section class="proj-section">
     <div class="wrap">
-      <span class="eyebrow reveal">Before &amp; After</span>
-      <h2 class="heading-lg reveal" style="margin-bottom:10px;">Masonry &amp; ADA Entrance Restoration</h2>
-      <p class="body-md reveal" style="max-width:620px;">A full brick façade rebuild and new ADA-accessible entrance ramp at a 1969 institutional building — drag the handle to see the transformation.</p>
-
-      <div class="ba-slider reveal" id="ba1">
-        <img class="ba-after"  src="images/projects/masonry-entrance/after.jpg"  alt="Completed masonry entrance and ramp">
-        <img class="ba-before" src="images/projects/masonry-entrance/before.jpg" alt="Entrance during construction">
-        <span class="ba-tag ba-tag-before">During Construction</span>
-        <span class="ba-tag ba-tag-after">Completed</span>
-        <div class="ba-divider"></div>
-        <div class="ba-knob">&#8596;</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery-section">
-    <div class="wrap" style="padding-top:48px; padding-bottom:8px;">
-      <span class="eyebrow reveal">Portfolio</span>
-      <h2 class="heading-lg reveal">Quality &amp; Workmanship</h2>
-    </div>
-
-    <!-- Bronxville group header -->
-    <div class="wrap group-head" data-group="bronxville">
-      <div class="group-title">Bronxville Luxury Apartment Renovation</div>
-      <div class="group-meta">Full-floor high-end residential renovation — custom millwork, Calacatta porcelain, parquet flooring, and designer baths.</div>
-    </div>
-
-    <div class="wrap">
-      <div class="gallery-grid" id="gallery">
-
-        <!-- ===== ST. HILDA'S HOUSE ===== -->
-        <div class="gallery-card span2 reveal" data-category="institutional">
-          <img class="gc-img" src="images/projects/st-hildas/01-exterior-building.jpg" alt="St. Hilda's House — 454 Convent Avenue exterior">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Institutional</span><div class="gc-title">St. Hilda's House</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Institutional</span><div class="gc-strip-title">St. Hilda's House — Exterior, 454 Convent Ave</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="institutional">
-          <img class="gc-img" src="images/projects/st-hildas/05-common-lounge.jpg" alt="Common lounge with seating area">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Institutional</span><div class="gc-title">Common Lounge</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Institutional</span><div class="gc-strip-title">St. Hilda's House — Resident Common Lounge</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="institutional">
-          <img class="gc-img" src="images/projects/st-hildas/04-community-kitchen.jpg" alt="Shared community kitchen with stainless appliances">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Institutional</span><div class="gc-title">Community Kitchen</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Institutional</span><div class="gc-strip-title">St. Hilda's House — Shared Community Kitchen</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="institutional">
-          <img class="gc-img" src="images/projects/st-hildas/02-resident-bedroom.jpg" alt="Resident bedroom with desk and window">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Institutional</span><div class="gc-title">Resident Bedroom</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Institutional</span><div class="gc-strip-title">St. Hilda's House — Individual Resident Bedroom</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="institutional">
-          <img class="gc-img" src="images/projects/st-hildas/03-hallway-corridor.jpg" alt="Interior hallway and entry corridor">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Institutional</span><div class="gc-title">Interior Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Institutional</span><div class="gc-strip-title">St. Hilda's House — Hallway &amp; Entry Corridor</div></div>
-        </div>
-
-        <!-- ===== BRONXVILLE ===== -->
-        <div class="gallery-card span2 reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/01-kitchen-marble-island.jpg" alt="Custom kitchen with marble waterfall island">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Chef's Kitchen</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Chef's Kitchen — Marble Waterfall Island</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/04-kitchen-shelving.jpg" alt="Kitchen with custom open shelving">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Custom Millwork</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Custom Kitchen Millwork</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/03-kitchen-open-living.jpg" alt="Open kitchen to living room">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Open-Plan Living</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Open-Plan Kitchen &amp; Living</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/05-living-room.jpg" alt="Living room with parquet floor and fireplace">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Great Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Great Room — Herringbone Parquet</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/02-living-room-staged.jpg" alt="Staged living room with fireplace">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Fireplace Wall</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Slat-Wall Fireplace Feature</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/07-double-vanity.jpg" alt="Double vanity with lit mirror">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Primary Bath</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Primary Bath — Double Vanity</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/08-vanity-detail.jpg" alt="Floating double vanity detail">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Floating Vanity</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Floating Oak Vanity &amp; Calacatta</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/06-marble-shower.jpg" alt="Marble shower with rain head">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Marble Shower</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Walk-In Marble Shower</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/10-glass-shower.jpg" alt="Glass shower enclosure">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Glass Enclosure</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Frameless Glass Shower</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/09-water-closet.jpg" alt="Water closet with smart toilet">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Water Closet</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Water Closet — Smart Fixtures</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/11-hallway.jpg" alt="Hallway with shoji-style doors">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Gallery Hall</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Gallery Hall — Shoji Sliding Panels</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/bronxville-luxury/12-kitchen-range.jpg" alt="Kitchen range and marble backsplash">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Bronxville</span><div class="gc-title">Range &amp; Backsplash</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Bronxville Luxury</span><div class="gc-strip-title">Pro Range &amp; Marble Backsplash</div></div>
-        </div>
-
-        <!-- ===== SUPPORTIVE HOUSING ===== -->
-        <div class="wrap group-head" data-group="supportive" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">55-Unit Supportive Housing Gut Rehab</div>
-          <div class="group-meta">Full gut renovation of 55 studio residences in an occupied building — new kitchenettes, tiled baths, flooring, plus rooftop and parapet restoration.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/01-unit-living-room.jpg" alt="Renovated studio unit living area">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Studio Residence</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Studio Residence — Living Area</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/03-kitchenette-detail.jpg" alt="New kitchenette">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">New Kitchenette</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">New Kitchenette</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/08-bathroom.jpg" alt="Fully tiled bathroom">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Tiled Bath</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Fully Tiled Bath</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/06-unit-bedroom.jpg" alt="Renovated room with new flooring">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">New Flooring</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">New Flooring &amp; Finishes</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/02-unit-kitchen-bath.jpg" alt="Studio unit with kitchen and bath">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Open Studio</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Open Studio Layout</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/07-kitchenette-fridge.jpg" alt="Compact kitchenette">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Compact Kitchenette</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Compact Kitchenette</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/09-unit-entry.jpg" alt="Unit entry with bath">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Unit Entry</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Unit Entry &amp; Bath</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/10-kitchenette-cooktop.jpg" alt="Kitchenette with cooktop and sink">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Cooktop &amp; Sink</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Cooktop &amp; Sink</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/05-roof-skyline.jpg" alt="Rooftop scaffolding with city skyline">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Rooftop Work</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Scaffolded Roof Work — Manhattan</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/04-roof-parapet-coping.jpg" alt="Parapet coping restoration">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Parapet &amp; Coping</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Parapet &amp; Coping Restoration</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/supportive-housing/11-unit-kitchen-bathroom.png" alt="Renovated studio unit kitchen and bathroom side by side">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Supportive Housing</span><div class="gc-title">Kitchen &amp; Bath</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Supportive Housing</span><div class="gc-strip-title">Renovated Kitchen &amp; Tiled Bathroom</div></div>
-        </div>
-
-        <!-- ===== MASONRY & ADA ENTRANCE (Before & After) ===== -->
-        <div class="wrap group-head" data-group="masonry" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Masonry &amp; ADA Entrance Restoration</div>
-          <div class="group-meta">Full brick façade rebuild and a new ADA-accessible entrance ramp at a 1969 institutional building — shown during construction and completed.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="facade">
-          <img class="gc-img" src="images/projects/masonry-entrance/after.jpg" alt="Completed masonry entrance and ADA ramp">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">After</span><div class="gc-title">Completed Entrance &amp; Ramp</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Masonry · After</span><div class="gc-strip-title">Completed Entrance &amp; ADA Ramp</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="facade">
-          <img class="gc-img" src="images/projects/masonry-entrance/before.jpg" alt="Masonry entrance during construction">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Before</span><div class="gc-title">During Construction</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Masonry · Before</span><div class="gc-strip-title">Brick Rebuild In Progress</div></div>
-        </div>
-
-        <!-- ===== ROOF & TERRACE WATERPROOFING ===== -->
-        <div class="wrap group-head" data-group="roofing" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Roof &amp; Terrace Waterproofing</div>
-          <div class="group-meta">Full roof and terrace restoration — elastomeric coating, reinforced flashing at every penetration, and waterproof membrane, sealing the building envelope against water intrusion.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="roofing">
-          <img class="gc-img" src="images/projects/roof-waterproofing/01-roof-coating.jpg" alt="Roof with elastomeric coating and reinforced flashing">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Roofing</span><div class="gc-title">Roof Coating &amp; Flashing</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Roof &amp; Waterproofing</span><div class="gc-strip-title">Elastomeric Roof Coating &amp; Flashing</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="roofing">
-          <img class="gc-img" src="images/projects/roof-waterproofing/02-terrace-membrane.jpg" alt="Terrace with new waterproof membrane">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Roofing</span><div class="gc-title">Terrace Membrane</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Roof &amp; Waterproofing</span><div class="gc-strip-title">Terrace Waterproof Membrane</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="roofing">
-          <img class="gc-img" src="images/projects/roof-waterproofing/03-crew-coating.jpg" alt="FPS crew applying terrace coating">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Roofing</span><div class="gc-title">In-House Crew</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Roof &amp; Waterproofing</span><div class="gc-strip-title">In-House Crew at Work</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="roofing">
-          <img class="gc-img" src="images/projects/roof-waterproofing/04-applying-coating.jpg" alt="Applying waterproof coating to terrace">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Roofing</span><div class="gc-title">Applying Coating</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Roof &amp; Waterproofing</span><div class="gc-strip-title">Applying Terrace Coating</div></div>
-        </div>
-
-        <!-- ===== COMMERCIAL LOBBY RENOVATION ===== -->
-        <div class="wrap group-head" data-group="lobby" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Commercial Lobby Renovation</div>
-          <div class="group-meta">Full interior renovation of a commercial lobby — custom porcelain tile with wood-inlay border pattern, granite reception counter, and designer paint. Photographed during construction and at completion.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/commercial-lobby/01-lobby-completed.jpg" alt="Completed commercial lobby with custom tile floor">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Lobby</span><div class="gc-title">Lobby — Completed</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Commercial Lobby</span><div class="gc-strip-title">Custom Tile Lobby — Completed</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/commercial-lobby/02-tile-laying-progress.jpg" alt="Workers laying custom tile floor in lobby">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Lobby</span><div class="gc-title">Tile Installation</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Commercial Lobby</span><div class="gc-strip-title">Lobby Floor Tile In Progress</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/commercial-lobby/03-mortar-troweling.jpg" alt="FPS crew troweling mortar for tile">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Lobby</span><div class="gc-title">Mortar Work</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Commercial Lobby</span><div class="gc-strip-title">FPS Crew — Troweling Mortar</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/commercial-lobby/04-tile-layout-planning.jpg" alt="Precision tile layout planning">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Lobby</span><div class="gc-title">Precision Layout</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Commercial Lobby</span><div class="gc-strip-title">Precision Porcelain Tile Layout</div></div>
-        </div>
-
-        <!-- ===== FACADE & WINDOW REPLACEMENT ===== -->
-        <div class="wrap group-head" data-group="facade" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Facade &amp; Window Replacement</div>
-          <div class="group-meta">Full-building facade restoration and window replacement on a multi-story residential building — new metal framing, insulation, and windows installed from scaffolding by the FPS in-house crew.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="facade">
-          <img class="gc-img" src="images/projects/facade-window-replacement/02-building-scaffolding.jpg" alt="Multi-story building wrapped in scaffolding for facade work">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Facade</span><div class="gc-title">Full Scaffold Wrap</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Facade &amp; Windows</span><div class="gc-strip-title">Full Scaffold Wrap — Facade Replacement</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="facade">
-          <img class="gc-img" src="images/projects/facade-window-replacement/01-scaffolding-worker.jpg" alt="Worker cutting metal framing on scaffold">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Facade</span><div class="gc-title">Metal Framing</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Facade &amp; Windows</span><div class="gc-strip-title">Metal Framing on Scaffold</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="facade">
-          <img class="gc-img" src="images/projects/facade-window-replacement/04-densglass-facade-queens.jpg" alt="Queens institutional building exterior with DensGlass sheathing and scaffolding">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Facade</span><div class="gc-title">DensGlass Sheathing</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Facade &amp; Windows</span><div class="gc-strip-title">DensGlass Facade — Queens Building</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="facade">
-          <img class="gc-img" src="images/projects/facade-window-replacement/03-fps-crew-scaffolding.jpg" alt="FPS crew working on building facade from scaffold">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Facade</span><div class="gc-title">FPS Crew</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Facade &amp; Windows</span><div class="gc-strip-title">FPS In-House Crew at Work</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="facade">
-          <img class="gc-img" src="images/projects/facade-window-replacement/05-building-scaffold-netting.jpg" alt="Institutional building fully wrapped in protective scaffold netting during facade renovation">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Facade</span><div class="gc-title">Scaffold Netting</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Facade &amp; Windows</span><div class="gc-strip-title">Full Building — Protective Scaffold Netting</div></div>
-        </div>
-
-        <!-- ===== FOUNDATION & EXCAVATION ===== -->
-        <div class="wrap group-head" data-group="foundation" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Foundation &amp; Excavation</div>
-          <div class="group-meta">Deep foundation excavation and concrete demolition at a historic masonry building — including trench shoring, rebar exposure, and Bobcat-assisted excavation to address underground structural work.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/foundation-excavation/01-excavation-building.jpg" alt="Excavation with crane beside historic masonry building">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Foundation</span><div class="gc-title">Foundation Excavation</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Foundation &amp; Excavation</span><div class="gc-strip-title">Foundation Excavation — Masonry Building</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/foundation-excavation/02-jackhammer-foundation.jpg" alt="Workers demolishing concrete foundation with jackhammer">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Foundation</span><div class="gc-title">Concrete Demo</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Foundation &amp; Excavation</span><div class="gc-strip-title">Jackhammer — Foundation Demo</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/foundation-excavation/03-trench-shoring.jpg" alt="Trench shoring and rebar at foundation excavation">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Foundation</span><div class="gc-title">Trench Shoring</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Foundation &amp; Excavation</span><div class="gc-strip-title">Trench Shoring &amp; Rebar Exposure</div></div>
-        </div>
-
-        <!-- ===== GRAND LOBBY RENOVATION ===== -->
-        <div class="wrap group-head" data-group="grand-lobby" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Grand Lobby Renovation</div>
-          <div class="group-meta">Full gut renovation of a high-rise residential lobby — porcelain tile floors, natural stone accent wall, custom millwork columns, LED cove lighting, and new automatic entry vestibule.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/grand-lobby/01-lobby-entry-stone-wall.jpg" alt="Renovated grand lobby with stone accent wall and automatic entry">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Grand Lobby</span><div class="gc-title">Lobby Entry</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Grand Lobby</span><div class="gc-strip-title">Lobby Entry — Stone Wall &amp; Auto Doors</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/grand-lobby/02-stone-accent-wall-bench.jpg" alt="Natural stone accent wall with seating area">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Grand Lobby</span><div class="gc-title">Stone Feature Wall</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Grand Lobby</span><div class="gc-strip-title">Natural Stone Accent Wall</div></div>
-        </div>
-
-        <!-- ===== RADIANT FLOOR HEATING ===== -->
-        <div class="wrap group-head" data-group="radiant" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Radiant Floor Heating</div>
-          <div class="group-meta">Full PEX radiant floor heating installation across multiple rooms — tubing layout, manifold rough-in, and insulation substrate, ready for concrete pour and finish flooring.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="mep">
-          <img class="gc-img" src="images/projects/radiant-floor-heating/01-pex-tubing-installation.jpg" alt="PEX radiant heating tubing being installed on insulation mat">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Radiant Heating</span><div class="gc-title">PEX Installation</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Radiant Floor Heating</span><div class="gc-strip-title">PEX Tubing — Radiant Heat Install</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="mep">
-          <img class="gc-img" src="images/projects/radiant-floor-heating/02-pex-tubing-room.jpg" alt="Completed PEX radiant floor loop layout in room">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Radiant Heating</span><div class="gc-title">Room Loop Layout</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Radiant Floor Heating</span><div class="gc-strip-title">Full Room Loop Layout</div></div>
-        </div>
-
-        <!-- ===== DIME BANK BRANCH ===== -->
-        <div class="wrap group-head" data-group="dime-bank" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Dime Community Bank — Branch Renovation</div>
-          <div class="group-meta">Complete interior fit-out of a Dime Community Bank (Since 1864) branch — polished terrazzo floors, custom curved teller stations, branded millwork, glass-partition private offices, and full MEP coordination.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/dime-bank/01-banking-floor-full.jpg" alt="Dime Bank full banking floor with teller stations and glass offices">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Dime Bank</span><div class="gc-title">Full Banking Floor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Dime Bank Branch</span><div class="gc-strip-title">Full Banking Floor — Terrazzo &amp; Millwork</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/dime-bank/02-teller-station-entry.jpg" alt="Dime Bank teller station with branded millwork">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Dime Bank</span><div class="gc-title">Teller Station</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Dime Bank Branch</span><div class="gc-strip-title">Curved Teller Station</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/dime-bank/03-glass-office-kitchen.jpg" alt="Dime Bank glass partition private office and kitchen area">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Dime Bank</span><div class="gc-title">Glass Office</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Dime Bank Branch</span><div class="gc-strip-title">Glass-Partition Private Office</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/dime-bank/06-glass-partition-entry.jpg" alt="Dime Bank glass partition office and blue cabinetry">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Dime Bank</span><div class="gc-title">Glass Partition</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Dime Bank Branch</span><div class="gc-strip-title">Glass Partition &amp; Blue Millwork</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/dime-bank/04-banking-floor-wide.jpg" alt="Wide view of Dime Bank banking floor with service stations">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Dime Bank</span><div class="gc-title">Service Floor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Dime Bank Branch</span><div class="gc-strip-title">Open Service Floor — Wide View</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/dime-bank/05-teller-station-close.jpg" alt="Dime Bank teller station close-up">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Dime Bank</span><div class="gc-title">Teller Close-Up</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Dime Bank Branch</span><div class="gc-strip-title">Curved Teller Station — Close-Up</div></div>
-        </div>
-
-        <!-- ===== COMMERCIAL INTERIOR ===== -->
-        <div class="wrap group-head" data-group="commercial-interior" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Commercial Interior Fit-Out</div>
-          <div class="group-meta">High-end commercial interior renovation featuring custom 3D wave-panel accent wall with LED backlighting, oversized dome pendant lighting, designer carpet tile, and full MEP rough-in.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/commercial-interior/01-wave-wall-dome-lights.jpg" alt="Commercial interior with 3D wave accent wall and dome pendant lights">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Commercial</span><div class="gc-title">Wave Wall &amp; Dome Pendants</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Commercial Interior</span><div class="gc-strip-title">3D Wave Wall &amp; Custom Pendant Lighting</div></div>
-        </div>
-
-        <!-- ===== NEW CONSTRUCTION ===== -->
-        <div class="wrap group-head" data-group="new-construction" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">New Construction — Wood Framing</div>
-          <div class="group-meta">Ground-up residential new construction — structural wood framing, engineered floor joists on steel beam, and full roof rafter assembly, completed by FPS Contracting's in-house framing crew.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/new-construction/01-floor-joists-framing.jpg" alt="Wood framing with engineered floor joists on steel beam">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">New Construction</span><div class="gc-title">Floor Joist Framing</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">New Construction</span><div class="gc-strip-title">Engineered Floor Joists &amp; Steel Beam</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/new-construction/02-roof-rafters.jpg" alt="Roof rafter assembly against blue sky">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">New Construction</span><div class="gc-title">Roof Rafter Assembly</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">New Construction</span><div class="gc-strip-title">Roof Rafter Assembly</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/new-construction/04-roof-framing-alt.jpg" alt="Roof framing with ladder against blue sky">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">New Construction</span><div class="gc-title">Roof Framing</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">New Construction</span><div class="gc-strip-title">Roof Framing — Open Sky</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="residential">
-          <img class="gc-img" src="images/projects/new-construction/03-drywall-finishing.jpg" alt="Room with freshly skimmed drywall and coffered ceiling">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">New Construction</span><div class="gc-title">Drywall Finish</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">New Construction</span><div class="gc-strip-title">Drywall &amp; Skim Coat — Ready to Paint</div></div>
-        </div>
-
-        <!-- ===== OFFICE RENOVATION ===== -->
-        <div class="wrap group-head" data-group="office-renovation" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Large-Scale Office Renovation</div>
-          <div class="group-meta">Full interior renovation of a multi-floor commercial office building — open-plan workstation fit-out, custom branding columns, new suspended ceiling with LED panels, and fully renovated restrooms throughout.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/01-open-plan-office.jpg" alt="Large open-plan office with cubicle workstations and branded columns">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Open-Plan Floor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Open-Plan Workstation Floor</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/03-carpet-installation.jpg" alt="Open-plan office floor during carpet tile installation">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Carpet Installation</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Carpet Tile — Floor Installation</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/02-restroom-renovation.jpg" alt="Renovated commercial restroom with dark partition panels and designer sinks">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Restroom Renovation</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Commercial Restroom — Designer Fixtures</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/04-hallway-painting.jpg" alt="Hallway during construction with worker painting">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Hallway Painting</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Corridor — Painting in Progress</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/05-open-floor-ceiling-grid.jpg" alt="Open office floor during ceiling grid installation">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Ceiling Grid Install</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Ceiling Grid Installation In Progress</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/06-open-floor-dark-columns.jpg" alt="Open floor with dark painted columns and walls">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Columns Painted</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Columns &amp; Walls — Painted</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/07-open-floor-painting.jpg" alt="Open office floor with scaffolding during wall painting">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Wall Painting</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Wall Painting — In Progress</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/08-open-floor-progress.jpg" alt="Open office floor mid-renovation with yellow and blue columns">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Floor Progress</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Open Floor — Mid-Renovation</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/09-office-spaces-composite.png" alt="Three-panel composite showing conference room, corridor, and herringbone LVT flooring">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Multi-Space Composite</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Office Fit-Out — Conference, Corridor &amp; Flooring</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/10-open-plan-green-panels.jpg" alt="Open-plan office with green cubicle dividers and LED suspended ceiling">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Open-Plan Green</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Open-Plan Office — Green Cubicle Panels</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/11-cubicle-office-floral-art.jpg" alt="Open-plan cubicle office with large format floral artwork panels on walls">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Cubicle Floor — Art Walls</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Open Cubicle Floor — Floral Art Panels</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/office-renovation/12-open-floor-glass-offices.jpg" alt="Large open office floor with carpet tile and perimeter glass-front private offices">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Office</span><div class="gc-title">Glass-Front Offices</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Office Renovation</span><div class="gc-strip-title">Open Floor — Perimeter Glass-Front Offices</div></div>
-        </div>
-
-        <!-- ===== CORPORATE RECEPTION ===== -->
-        <div class="wrap group-head" data-group="corporate-reception" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Corporate Reception Desk</div>
-          <div class="group-meta">Custom-fabricated reception desk with terrazzo/granite base, polished marble countertop, high-gloss navy millwork panels, and bespoke blown-glass globe pendant lighting — full interior fit-out by FPS Contracting.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/corporate-reception/01-reception-desk-front.jpg" alt="Custom corporate reception desk with marble top and globe pendant lights">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Reception</span><div class="gc-title">Reception Desk</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Corporate Reception</span><div class="gc-strip-title">Custom Reception — Marble &amp; Terrazzo</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/corporate-reception/02-reception-desk-detail.jpg" alt="Reception desk detail with globe pendants and marble countertop">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Reception</span><div class="gc-title">Pendant Detail</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Corporate Reception</span><div class="gc-strip-title">Globe Pendant &amp; Marble Detail</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/corporate-reception/04-reception-desk-angle.png" alt="Corporate reception desk from side angle showing marble top">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Reception</span><div class="gc-title">Side Angle</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Corporate Reception</span><div class="gc-strip-title">Reception Desk — Side View</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/corporate-reception/03-reception-desk-wide.jpg" alt="Wide view of full L-shaped corporate reception desk">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Reception</span><div class="gc-title">Full L-Shape</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Corporate Reception</span><div class="gc-strip-title">L-Shaped Reception — Full View</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/corporate-reception/05-grand-reception-desk.jpg" alt="Grand-branded corporate reception with geometric 3D panel wall and pendant lights">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Reception</span><div class="gc-title">Grand Reception</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Corporate Reception</span><div class="gc-strip-title">Grand — Branded Reception &amp; 3D Feature Wall</div></div>
-        </div>
-
-        <!-- ===== TILE INSTALLATION ===== -->
-        <div class="wrap group-head" data-group="tile-installation" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Wood-Look Porcelain Tile Installation</div>
-          <div class="group-meta">Precision installation of large-format dark wood-look porcelain tile with leveling clip system — FPS in-house tile crew achieving perfectly flat, joint-aligned results across a full residential floor.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="mep">
-          <img class="gc-img" src="images/projects/tile-installation/01-wood-look-tile-progress.jpg" alt="Dark wood-look porcelain tile being laid with leveling clips">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Tile</span><div class="gc-title">Tile in Progress</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Tile Installation</span><div class="gc-strip-title">Wood-Look Porcelain — In Progress</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="mep">
-          <img class="gc-img" src="images/projects/tile-installation/02-fps-tiling-crew.jpg" alt="FPS crew member setting large-format tile with leveling system">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Tile</span><div class="gc-title">FPS Tile Crew</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Tile Installation</span><div class="gc-strip-title">FPS Crew — Precision Leveling System</div></div>
-        </div>
-
-        <!-- ===== ADA BATHROOM RENOVATION ===== -->
-        <div class="wrap group-head" data-group="ada-bathroom" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">ADA Bathroom Renovation</div>
-          <div class="group-meta">Full ADA-compliant bathroom renovation — vertical-stack large-format tile, penny-round mosaic accent border, stainless grab bars, matte black fixtures, and full plumbing rough-in by FPS Contracting.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/ada-bathroom/01-ada-shower-tile.jpg" alt="ADA-compliant shower with large format tile and penny round mosaic border">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">ADA Bath</span><div class="gc-title">ADA Shower</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">ADA Bathroom</span><div class="gc-strip-title">ADA Shower — Mosaic Border &amp; Grab Bars</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/ada-bathroom/02-ada-bathroom-complete.jpg" alt="Completed ADA bathroom with tile wainscot and pedestal sink">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">ADA Bath</span><div class="gc-title">Completed Bath</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">ADA Bathroom</span><div class="gc-strip-title">Completed ADA Bath — Tile Wainscot</div></div>
-        </div>
-
-        <!-- ===== HEALTHCARE FACILITY RENOVATION ===== -->
-        <div class="wrap group-head" data-group="healthcare-facility" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Healthcare Facility Renovation</div>
-          <div class="group-meta">Full interior renovation of a multi-floor healthcare facility — patient rooms with PTAC units, bifold privacy doors, designer paint, updated patient waiting areas, and fully renovated ADA bathrooms throughout.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/02-patient-waiting-area.jpg" alt="Healthcare patient waiting area with teal seating and artwork">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Patient Waiting Area</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Patient Waiting Area — Completed</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/01-patient-room-corridor.jpg" alt="Healthcare patient room corridor with PTAC and bifold door">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Patient Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Patient Room — PTAC &amp; Bifold Door</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/03-patient-room-wide.jpg" alt="Patient room with two-tone walls and dual bifold doors">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Room — Wide View</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Patient Room — Two-Tone Walls</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/04-patient-bathroom-tub.jpg" alt="Patient bathroom with ADA tub, grab bars, and dark tile floor">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Patient Bath</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Patient Bathroom — ADA Tub &amp; Grab Bars</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/05-patient-bathroom-entry.jpg" alt="Patient bathroom entry with tub, white tile, and grab bars">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Bath Entry</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Patient Bathroom — Tub Entry View</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/06-medical-office-corridor.png" alt="Medical office corridor with kitchenette at end of hallway">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Office Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Medical Office Corridor &amp; Kitchenette</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/07-supply-storage-room.jpg" alt="Healthcare supply storage room with L-shaped built-in wooden cabinets">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Supply Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Supply Storage — Built-In Cabinetry</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/08-exam-room-sink-desk.jpg" alt="Medical exam room with sink, built-in cabinets, and desk">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Exam Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Exam Room — Sink &amp; Built-In Cabinets</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/09-reception-lobby.jpg" alt="Modern clinical reception lobby with curved desk and banquette seating">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Clinical Reception</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Clinical Reception — Curved Desk &amp; Seating</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/10-exam-room-wide.jpg" alt="Exam room wide view with sink, desk chair, and exam table">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Exam Room — Wide</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Exam Room — Wide Angle</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/11-treatment-room-exam-bed.jpg" alt="Treatment room with exam table, cabinetry, and privacy curtain">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Treatment Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Treatment Room — Exam Bed &amp; Cabinetry</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/12-residential-corridor-artwork.jpg" alt="Residential-style healthcare corridor with framed artwork and patient room doors">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Resident Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Resident Corridor — Artwork &amp; Warm Finishes</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/13-dining-area-movie-posters.jpg" alt="Healthcare dining area with movie posters and bistro tables">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Dining Area</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Dining Alcove — Bistro Tables &amp; Artwork</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/14-lounge-jukebox-dining.jpg" alt="Healthcare lounge with retro jukebox, dining tables, and artwork">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Resident Lounge</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Resident Lounge — Jukebox &amp; Dining</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/15-corridor-tv-lounge.jpg" alt="Healthcare corridor with wall-mounted TV and striped wallcovering">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Corridor Lounge</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Corridor Lounge — TV &amp; Common Area</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/16-corridor-amenity-area.jpg" alt="Healthcare corridor with striped wallcovering, orange accents, and amenity area">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Amenity Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Amenity Corridor — Custom Wallcovering</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/17-pt-room-checkerboard.jpg" alt="Physical therapy room with exercise equipment and checkerboard VCT floor">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Physical Therapy Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Physical Therapy Room — Equipment &amp; VCT</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/18-nursing-corridor-wainscoting.jpg" alt="Nursing home corridor with wood-tone wainscoting and diamond VCT inlay">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Nursing Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Nursing Corridor — Wood Wainscoting &amp; VCT</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/19-led-art-wall-mural.jpg" alt="Large backlit LED art wall with NYC spring tulip mural in healthcare lobby">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">LED Art Wall</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Lobby LED Art Wall — NYC Spring Mural</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/20-resident-lounge-tv.jpg" alt="Resident lounge with wall-mounted TV, wood wall panel, and teal bench seating">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Resident Lounge</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Resident Lounge — TV &amp; Wood Wall Feature</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/21-resident-lounge-sofas.jpg" alt="Resident lounge with teal sofas, wood coffee table, and warm hardwood flooring">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Lounge Seating</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Resident Lounge — Teal Sofas &amp; Wood Flooring</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/22-lounge-bathroom-composite.png" alt="Side-by-side view of renovated resident lounge and tiled bathroom">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Lounge &amp; Bath</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Resident Lounge &amp; Tiled Bathroom — Completed</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/23-resident-lounge-wide.jpg" alt="Wide view of resident lounge with multiple seating areas and natural light">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Lounge — Wide View</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Resident Lounge — Full Wide View</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/24-dining-common-area-wide.jpg" alt="Healthcare dining and common area with LED art walls and round tables">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Dining &amp; Common Area</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Dining &amp; Common Area — LED Art Walls</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/25-lobby-planted-garden-wall.jpg" alt="Healthcare lobby with planted grass garden feature, wood wall, and TV">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Planted Garden Lobby</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Lobby — Planted Garden Wall Feature</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/26-dining-area-long-view.jpg" alt="Long view of healthcare dining area with spring mural and bird artwork">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Dining — Long View</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Dining Area — Long View, Dual Art Walls</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/27-dining-art-walls-close.jpg" alt="Close view of healthcare dining area with spring tulip mural and hummingbird art">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Art Wall Detail</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Dining Art Walls — Spring Mural &amp; Bird Art</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/28-dining-area-alt-angle.jpg" alt="Alternative angle of healthcare dining area showing full LED mural wall">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Dining — Alt Angle</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Dining Area — Full Mural Wall View</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/29-patient-wing-corridor.jpg" alt="Clean patient wing corridor with wood-tone doors, teal walls, and VCT flooring">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Patient Wing Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Patient Wing Corridor — Completed</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/30-main-dining-room.jpg" alt="Large main dining room with green VCT floor, framed artwork, and tables">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Main Dining Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Main Dining Room — Completed</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/31-conference-meeting-room.jpg" alt="Conference room with oval wood table, blue chairs, and designer wallcovering">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Conference Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Conference Room — Oval Table &amp; Designer Chairs</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/32-lobby-garden-tv-wall.jpg" alt="Healthcare lobby with planted garden feature, wood wall panel, and flat-screen TV">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Garden Lobby</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Lobby — Garden Feature &amp; TV Wall</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/33-dining-sunflower-art-wall.jpg" alt="Healthcare dining area with sunflower art wall panel and round tables">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Dining — Sunflower Art Wall</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Dining Area — Sunflower Feature Wall</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/34-lobby-aquarium-feature.jpg" alt="Healthcare lobby with large built-in aquarium feature wall and lounge seating">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Aquarium Feature Wall</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Lobby — Built-In Aquarium Feature Wall</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/35-lobby-butterfly-art-wall.jpg" alt="Healthcare lobby with colorful 3D butterfly art installation on wood panel">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Butterfly Art Wall</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Lobby — 3D Butterfly Art Installation</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/36-patient-corridor-vct-stripe.jpg" alt="Patient wing corridor with wood doors, VCT flooring with green stripe">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Patient Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Patient Corridor — Green VCT Stripe</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/38-reception-curved-desk-floral-art.jpg" alt="Upscale medical reception lobby with curved desk, red floral art walls, and coffered ceiling">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Medical Reception</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Medical Reception — Curved Desk &amp; Floral Art</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/37-reception-lobby-red-floral.jpg" alt="Premium medical reception corridor with red poppy art panels and planted garden beds">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Reception Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Reception Corridor — Red Floral Art Panels</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/39-pt-room-stone-accent-wall.jpg" alt="Physical therapy room with stacked stone accent wall and dark wood floors">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">PT Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Physical Therapy Room — Stone Accent Wall</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/40-activity-dining-room.jpg" alt="Healthcare activity and dining room with wood plank floors and open layout">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Activity Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Activity &amp; Dining Room — Open Layout</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/41-lobby-butterfly-art-b.jpg" alt="Healthcare lobby with colorful butterfly art scattered across light wood panel wall">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Butterfly Lobby</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Lobby — Butterfly Art Feature Wall</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/42-lobby-aquarium-flag.jpg" alt="Healthcare lobby with large coral reef aquarium, American flag, and lounge seating">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Aquarium Lobby</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Lobby — Coral Reef Aquarium Feature</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/43-lobby-aquarium-living-wall.jpg" alt="Healthcare lobby aquarium with living plant wall visible alongside coral reef tank">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Aquarium &amp; Living Wall</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Lobby — Aquarium &amp; Living Plant Wall</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/44-waiting-room-autumn-art.jpg" alt="Healthcare patient waiting room with teal seating and large autumn tree art panels">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Patient Waiting Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Patient Waiting Room — Autumn Art &amp; Teal Seating</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/healthcare-facility/45-infusion-treatment-center.jpg" alt="Medical infusion and treatment center with teal VCT floor, nurses station, and treatment chairs">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Healthcare</span><div class="gc-title">Infusion Center</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Healthcare Facility</span><div class="gc-strip-title">Infusion &amp; Treatment Center — Completed</div></div>
-        </div>
-
-        <!-- ===== REHABILITATION CENTER ===== -->
-        <div class="wrap group-head" data-group="rehabilitation-center" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Rehabilitation Center Renovation</div>
-          <div class="group-meta">Full interior renovation of a rehabilitation and physical therapy center — vibrant orange and lime green palette, polished VCT floors with multicolor inlays, full PT gym with parallel bars and equipment, and staff kitchenette.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/rehabilitation-center/01-activity-corridor-colorful.jpg" alt="Rehabilitation center open corridor with orange and green walls and colorful VCT floor">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Rehab Center</span><div class="gc-title">Activity Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Rehabilitation Center</span><div class="gc-strip-title">Activity Corridor — Colorful VCT &amp; Accent Walls</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/rehabilitation-center/02-corridor-orange-green.jpg" alt="Rehabilitation center hallway with textured orange tile wall and lime green accent">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Rehab Center</span><div class="gc-title">Feature Wall Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Rehabilitation Center</span><div class="gc-strip-title">Corridor — Textured Orange Feature Wall</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/rehabilitation-center/03-kitchenette-lime-countertop.jpg" alt="Staff kitchenette with lime green countertop and gray cabinets">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Rehab Center</span><div class="gc-title">Staff Kitchenette</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Rehabilitation Center</span><div class="gc-strip-title">Staff Kitchenette — Lime Green Countertop</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/rehabilitation-center/04-corridor-orange-stripe.jpg" alt="Rehabilitation center corridor with orange and green stripe design and handrails">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Rehab Center</span><div class="gc-title">Stripe Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Rehabilitation Center</span><div class="gc-strip-title">Corridor — Orange &amp; Green Stripe Detail</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/rehabilitation-center/05-pt-gym-ballet-bars.jpg" alt="Physical therapy gym with full-length mirrors and ballet parallel bars">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Rehab Center</span><div class="gc-title">PT Gym — Ballet Bars</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Rehabilitation Center</span><div class="gc-strip-title">PT Gym — Mirrors &amp; Parallel Ballet Bars</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/rehabilitation-center/06-pt-gym-active-equipment.jpg" alt="Physical therapy gym in use with treadmill, bike, and patient treatment">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Rehab Center</span><div class="gc-title">PT Gym — Equipment</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Rehabilitation Center</span><div class="gc-strip-title">PT Gym — Treadmill &amp; Rehab Equipment</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/rehabilitation-center/07-corridor-before-after.png" alt="Side-by-side comparison of rehabilitation center corridor">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Rehab Center</span><div class="gc-title">Corridor — Two Views</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Rehabilitation Center</span><div class="gc-strip-title">Corridor Comparison — Two Angles</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="healthcare">
-          <img class="gc-img" src="images/projects/rehabilitation-center/08-open-activity-space.jpg" alt="Open rehabilitation center activity space with colorful VCT and orange accent walls">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Rehab Center</span><div class="gc-title">Open Activity Space</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Rehabilitation Center</span><div class="gc-strip-title">Open Activity Space — Orange &amp; Lime Accent</div></div>
-        </div>
-
-        <!-- ===== CORPORATE BOARDROOM ===== -->
-        <div class="wrap group-head" data-group="commercial-boardroom" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Corporate Boardroom</div>
-          <div class="group-meta">Custom corporate boardroom fit-out featuring dramatic large-format black dome pendant lights, solid wood conference table, and designer acoustic ceiling panels — fully coordinated millwork and MEP.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="commercial">
-          <img class="gc-img" src="images/projects/commercial-boardroom/01-boardroom-dome-pendants.jpg" alt="Corporate boardroom with oversized black dome pendant lights over long wood conference table">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Boardroom</span><div class="gc-title">Corporate Boardroom</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Corporate Boardroom</span><div class="gc-strip-title">Boardroom — Dome Pendants &amp; Wood Table</div></div>
-        </div>
-
-        <!-- ===== HOSPITALITY & HOTEL ===== -->
-        <div class="wrap group-head" data-group="hospitality" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Hospitality &amp; Hotel Renovation</div>
-          <div class="group-meta">Full interior renovation of a hotel lobby — new porcelain tile floors with stone inlay border, custom millwork reception desk, designer lighting, and fully furnished lounge area.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/01-hotel-lobby-reception.jpg" alt="Renovated hotel lobby with tile floors, custom reception desk, and lounge seating">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Hotel Lobby</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Hotel Lobby — Tile Floors &amp; Custom Reception</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/03-hotel-exterior-rendering.jpg" alt="Architectural rendering of full hotel exterior showing completed renovation scope">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Hotel Exterior</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Hotel Exterior — Architectural Rendering</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/02-lobby-desk-installation.jpg" alt="Hotel lobby reception desk with green quartz countertop being installed">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Desk Installation</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Reception Desk — Green Quartz In Progress</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/04-lobby-reception-completed.jpg" alt="Completed hotel reception desk with green quartz top, dark millwork panels, and pendant lights">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Reception — Completed</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Reception Desk — Green Quartz &amp; Dark Millwork</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/05-guest-corridor-in-progress.jpg" alt="Hotel guest corridor mid-renovation with wallcovering and room doors installed">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Guest Corridor</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Guest Corridor — In-Progress</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/06-suite-bath-kitchen-dining.png" alt="Hotel suite composite showing renovated bathroom, kitchenette with red countertop, and dining area">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Suite — Bath, Kitchen &amp; Dining</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Hotel Suite — Bathroom, Kitchenette &amp; Dining</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/07-ada-suite-bathroom.jpg" alt="Hotel ADA-compliant suite bathroom with roll-in shower, grab bars, and wall-mounted sink">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">ADA Suite Bath</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">ADA Suite Bathroom — Roll-In Shower</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/08-lobby-lounge-seating.jpg" alt="Hotel lobby lounge with dark wainscoting, leather armchairs, and framed landscape art">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Lobby Lounge</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Lobby Lounge — Leather Seating &amp; Art</div></div>
+      <span class="eyebrow reveal">Our Portfolio</span>
+      <h2 class="heading-lg reveal" style="margin-bottom:14px;">Projects Across New York</h2>
+      <div class="rule reveal"></div>
+      <div class="proj-grid" id="proj-grid">
+
+        <!-- 1. St. Hilda's House -->
+        <div class="proj-card reveal" data-category="institutional" data-project="st-hildas">
+          <div class="proj-img"><img src="images/projects/st-hildas/01-exterior-building.jpg" alt="St. Hilda's House" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Institutional</span>
+            <div class="proj-name">St. Hilda's House</div>
+            <div class="proj-loc">454 Convent Ave · Harlem, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 2. Bronxville Luxury Renovation -->
+        <div class="proj-card reveal" data-category="residential" data-project="bronxville-luxury">
+          <div class="proj-img"><img src="images/projects/bronxville-luxury/01-kitchen-marble-island.jpg" alt="Bronxville Luxury Renovation" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Residential</span>
+            <div class="proj-name">Bronxville Luxury Renovation</div>
+            <div class="proj-loc">Bronxville, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 3. Supportive Housing Rehab -->
+        <div class="proj-card reveal" data-category="residential" data-project="supportive-housing">
+          <div class="proj-img"><img src="images/projects/supportive-housing/01-unit-living-room.jpg" alt="Supportive Housing Rehab" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Residential</span>
+            <div class="proj-name">Supportive Housing Rehab</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 4. New Construction -->
+        <div class="proj-card reveal" data-category="residential" data-project="new-construction">
+          <div class="proj-img"><img src="images/projects/new-construction/01-floor-joists-framing.jpg" alt="New Construction" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Residential</span>
+            <div class="proj-name">New Construction</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 5. Foundation & Excavation -->
+        <div class="proj-card reveal" data-category="residential" data-project="foundation-excavation">
+          <div class="proj-img"><img src="images/projects/foundation-excavation/01-excavation-building.jpg" alt="Foundation &amp; Excavation" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Residential</span>
+            <div class="proj-name">Foundation &amp; Excavation</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 6. Healthcare Facility Renovations -->
+        <div class="proj-card reveal" data-category="healthcare" data-project="healthcare-facility">
+          <div class="proj-img"><img src="images/projects/healthcare-facility/01-patient-room-corridor.jpg" alt="Healthcare Facility Renovations" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Healthcare</span>
+            <div class="proj-name">Healthcare Facility Renovations</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 7. Rehabilitation Center -->
+        <div class="proj-card reveal" data-category="healthcare" data-project="rehabilitation-center">
+          <div class="proj-img"><img src="images/projects/rehabilitation-center/01-activity-corridor-colorful.jpg" alt="Rehabilitation Center" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Healthcare</span>
+            <div class="proj-name">Rehabilitation Center</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 8. ADA Bathroom Renovation -->
+        <div class="proj-card reveal" data-category="healthcare" data-project="ada-bathroom">
+          <div class="proj-img"><img src="images/projects/ada-bathroom/01-ada-shower-tile.jpg" alt="ADA Bathroom Renovation" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Healthcare</span>
+            <div class="proj-name">ADA Bathroom Renovation</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 9. Commercial Lobby Renovation -->
+        <div class="proj-card reveal" data-category="commercial" data-project="commercial-lobby">
+          <div class="proj-img"><img src="images/projects/commercial-lobby/01-lobby-completed.jpg" alt="Commercial Lobby Renovation" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Commercial</span>
+            <div class="proj-name">Commercial Lobby Renovation</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 10. Grand Lobby Renovation -->
+        <div class="proj-card reveal" data-category="commercial" data-project="grand-lobby">
+          <div class="proj-img"><img src="images/projects/grand-lobby/01-lobby-entry-stone-wall.jpg" alt="Grand Lobby Renovation" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Commercial</span>
+            <div class="proj-name">Grand Lobby Renovation</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 11. Dime Bank Branch -->
+        <div class="proj-card reveal" data-category="commercial" data-project="dime-bank">
+          <div class="proj-img"><img src="images/projects/dime-bank/05-teller-station-close.jpg" alt="Dime Bank Branch" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Commercial</span>
+            <div class="proj-name">Dime Bank Branch</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 12. Commercial Interior -->
+        <div class="proj-card reveal" data-category="commercial" data-project="commercial-interior">
+          <div class="proj-img"><img src="images/projects/commercial-interior/01-wave-wall-dome-lights.jpg" alt="Commercial Interior" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Commercial</span>
+            <div class="proj-name">Commercial Interior</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 13. Corporate Boardroom -->
+        <div class="proj-card reveal" data-category="commercial" data-project="commercial-boardroom">
+          <div class="proj-img"><img src="images/projects/commercial-boardroom/01-boardroom-dome-pendants.jpg" alt="Corporate Boardroom" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Commercial</span>
+            <div class="proj-name">Corporate Boardroom</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 14. Office Renovation -->
+        <div class="proj-card reveal" data-category="office" data-project="office-renovation">
+          <div class="proj-img"><img src="images/projects/office-renovation/01-open-plan-office.jpg" alt="Office Renovation" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Office &amp; Corporate</span>
+            <div class="proj-name">Office Renovation</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 15. Corporate Reception -->
+        <div class="proj-card reveal" data-category="office" data-project="corporate-reception">
+          <div class="proj-img"><img src="images/projects/corporate-reception/01-reception-desk-front.jpg" alt="Corporate Reception" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Office &amp; Corporate</span>
+            <div class="proj-name">Corporate Reception</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 16. Executive Suite -->
+        <div class="proj-card reveal" data-category="office" data-project="executive-suite">
+          <div class="proj-img"><img src="images/projects/executive-suite/01-kitchen-lounge-composite.png" alt="Executive Suite" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Office &amp; Corporate</span>
+            <div class="proj-name">Executive Suite</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 17. Hospitality & Hotel Projects -->
+        <div class="proj-card reveal" data-category="hospitality" data-project="hospitality">
+          <div class="proj-img"><img src="images/projects/hospitality/01-hotel-lobby-reception.jpg" alt="Hospitality &amp; Hotel Projects" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Hospitality</span>
+            <div class="proj-name">Hospitality &amp; Hotel Projects</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 18. Fitness Center -->
+        <div class="proj-card reveal" data-category="hospitality" data-project="fitness-center">
+          <div class="proj-img"><img src="images/projects/fitness-center/01-gym-yellow-floor.jpg" alt="Fitness Center" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Hospitality</span>
+            <div class="proj-name">Fitness Center</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 19. Masonry & ADA Entrance Restoration -->
+        <div class="proj-card reveal" data-category="facade" data-project="masonry-entrance">
+          <div class="proj-img"><img src="images/projects/masonry-entrance/after.jpg" alt="Masonry &amp; ADA Entrance Restoration" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Facade &amp; Masonry</span>
+            <div class="proj-name">Masonry &amp; ADA Entrance Restoration</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 20. Facade & Window Replacement -->
+        <div class="proj-card reveal" data-category="facade" data-project="facade-window-replacement">
+          <div class="proj-img"><img src="images/projects/facade-window-replacement/01-scaffolding-worker.jpg" alt="Facade &amp; Window Replacement" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Facade &amp; Masonry</span>
+            <div class="proj-name">Facade &amp; Window Replacement</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 21. Roof & Waterproofing -->
+        <div class="proj-card reveal" data-category="roofing" data-project="roof-waterproofing">
+          <div class="proj-img"><img src="images/projects/roof-waterproofing/01-roof-coating.jpg" alt="Roof &amp; Waterproofing" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Roofing</span>
+            <div class="proj-name">Roof &amp; Waterproofing</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 22. HVAC & Mechanical -->
+        <div class="proj-card reveal" data-category="mep" data-project="hvac-mechanical">
+          <div class="proj-img"><img src="images/projects/hvac-mechanical/01-hvac-crane-installation.jpg" alt="HVAC &amp; Mechanical" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">MEP &amp; Infrastructure</span>
+            <div class="proj-name">HVAC &amp; Mechanical</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 23. Radiant Floor Heating -->
+        <div class="proj-card reveal" data-category="mep" data-project="radiant-floor-heating">
+          <div class="proj-img"><img src="images/projects/radiant-floor-heating/01-pex-tubing-installation.jpg" alt="Radiant Floor Heating" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">MEP &amp; Infrastructure</span>
+            <div class="proj-name">Radiant Floor Heating</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 24. Underground Plumbing -->
+        <div class="proj-card reveal" data-category="mep" data-project="underground-plumbing">
+          <div class="proj-img"><img src="images/projects/underground-plumbing/01-indoor-excavation-plumbing.jpg" alt="Underground Plumbing" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">MEP &amp; Infrastructure</span>
+            <div class="proj-name">Underground Plumbing</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- 25. Tile Installation -->
+        <div class="proj-card reveal" data-category="mep" data-project="tile-installation">
+          <div class="proj-img"><img src="images/projects/tile-installation/01-wood-look-tile-progress.jpg" alt="Tile Installation" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">MEP &amp; Infrastructure</span>
+            <div class="proj-name">Tile Installation</div>
+            <div class="proj-loc">New York, NY</div>
+          </div>
+          <span class="proj-arrow">→</span>
         </div>
 
-        <div class="gallery-card span2 reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/09-bathroom-corridor-shower.png" alt="Side-by-side of hotel bathroom corridor and accessible shower with blue mosaic border tile">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Bath Corridor &amp; Shower</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Bathroom Corridor &amp; ADA Shower — Completed</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/10-hotel-exterior-grand-van.jpg" alt="Grand hotel exterior with branded van, American flag, and 4-story facade">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Hotel Exterior</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Grand Hotel — Exterior &amp; Street View</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/11-reception-desk-early.jpg" alt="Hotel reception desk with green quartz countertop and pendant lights during early fit-out">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Reception — Early Stage</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Reception Desk — Green Quartz, Early Fit-Out</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/12-corridor-office-composite.png" alt="Hotel interior composite showing front desk area, dark corridor with art, and guest wing hallway">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Hotel Interiors</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Hotel Interiors — Office, Corridors &amp; Guest Wing</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/13-business-center-tv-room.jpg" alt="Hotel business center meeting room with wood wall panel, flat-screen TV, and conference table">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Business Center</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Business Center — TV Meeting Room</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/14-business-center-office.jpg" alt="Hotel business center private office with light wood desk suite and carpet tile">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Business Center Office</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Business Center — Private Office Suite</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/15-suite-bath-bedroom-composite.png" alt="Hotel suite composite showing orange bathroom, white vanity bathroom, and tufted-headboard bedroom">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Suite Bath &amp; Bedroom</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Hotel Suite — Bathrooms &amp; Tufted Bedroom</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/hospitality/16-suite-bathrooms-composite.jpg" alt="Hotel suite bathroom composite showing blue office bath, glass shower, and dark vanity with backlit mirror">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Hospitality</span><div class="gc-title">Suite Bathrooms</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Hospitality &amp; Hotel</span><div class="gc-strip-title">Suite Bathrooms — Three Styles Completed</div></div>
-        </div>
-
-        <!-- ===== HVAC & MECHANICAL ===== -->
-        <div class="wrap group-head" data-group="hvac" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">HVAC &amp; Mechanical Installation</div>
-          <div class="group-meta">Coordinated crane lift and rooftop installation of a commercial HVAC package unit — full mechanical scope including curb fabrication, ductwork, and system commissioning.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="mep">
-          <img class="gc-img" src="images/projects/hvac-mechanical/01-hvac-crane-installation.jpg" alt="HVAC unit being craned onto apartment rooftop">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">HVAC</span><div class="gc-title">Rooftop HVAC Crane Lift</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">HVAC &amp; Mechanical</span><div class="gc-strip-title">Rooftop HVAC Unit — Crane Installation</div></div>
-        </div>
-
-        <!-- ===== EXECUTIVE SUITE ===== -->
-        <div class="wrap group-head" data-group="executive-suite" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Executive Suite Fit-Out</div>
-          <div class="group-meta">Full interior fit-out of a high-end executive suite — dark custom cabinetry, orange accent walls, glass-top conference table, private boardroom with long white table, and a luxury full bath with backlit vanity mirror and glass shower.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/executive-suite/01-kitchen-lounge-composite.png" alt="Executive suite composite showing dark kitchen with orange countertop, lounge seating, and herringbone carpet">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Executive Suite</span><div class="gc-title">Kitchen &amp; Lounge</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Executive Suite</span><div class="gc-strip-title">Suite Kitchen &amp; Lounge — Dark Cabinetry &amp; Orange</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/executive-suite/02-conference-room-kitchen.jpg" alt="Executive suite conference room with dark kitchen in background and glass table">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Executive Suite</span><div class="gc-title">Conference Room</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Executive Suite</span><div class="gc-strip-title">Conference Room — Glass Table &amp; Custom Kitchen</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/executive-suite/03-boardroom-vanity-shower.png" alt="Executive suite boardroom with orange walls and white table, private vanity, and glass shower">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Executive Suite</span><div class="gc-title">Boardroom &amp; Private Bath</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Executive Suite</span><div class="gc-strip-title">Boardroom, Backlit Vanity &amp; Glass Shower</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/executive-suite/04-lobby-white-green-chairs.jpg" alt="Reception lobby with white armchairs and green striped upholstery against dark wall">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Executive Suite</span><div class="gc-title">Reception Seating</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Executive Suite</span><div class="gc-strip-title">Suite Reception — Designer Lounge Chairs</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="office">
-          <img class="gc-img" src="images/projects/executive-suite/05-executive-kitchen-vessel-sink.jpg" alt="Executive suite kitchen with dark gloss cabinets, vessel sink, and city view">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Executive Suite</span><div class="gc-title">Executive Kitchen</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Executive Suite</span><div class="gc-strip-title">Executive Kitchen — Vessel Sink &amp; City View</div></div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="office">
-          <img class="gc-img" src="images/projects/executive-suite/06-executive-lounge-city-view.jpg" alt="Executive suite lounge with black leather sofas, orange accent chairs, and city panorama">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Executive Suite</span><div class="gc-title">Executive Lounge</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Executive Suite</span><div class="gc-strip-title">Executive Lounge — City Panorama &amp; Orange Accents</div></div>
-        </div>
-
-        <!-- ===== FITNESS CENTER ===== -->
-        <div class="wrap group-head" data-group="fitness-center" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Fitness Center Renovation</div>
-          <div class="group-meta">Commercial fitness center renovation — new high-impact rubber sport flooring in signature yellow, full mirrored wall, and free-weight area with dumbbell rack and benching stations.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="hospitality">
-          <img class="gc-img" src="images/projects/fitness-center/01-gym-yellow-floor.jpg" alt="Renovated fitness center with yellow sport floor, dumbbell rack, and mirrored wall">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Fitness Center</span><div class="gc-title">Free-Weight Area</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Fitness Center</span><div class="gc-strip-title">Free-Weight Area — Yellow Sport Floor</div></div>
-        </div>
-
-        <!-- ===== UNDERGROUND PLUMBING ===== -->
-        <div class="wrap group-head" data-group="underground-plumbing" style="grid-column:1/-1; padding-left:0; padding-right:0;">
-          <div class="group-title">Underground Plumbing &amp; Below-Grade Work</div>
-          <div class="group-meta">Below-grade plumbing installation inside a commercial facility — full excavation, pipe layout, trench shoring, and rebar-reinforced concrete formwork completed by the FPS in-house crew.</div>
-        </div>
-
-        <div class="gallery-card span2 reveal" data-category="mep">
-          <img class="gc-img" src="images/projects/underground-plumbing/01-indoor-excavation-plumbing.jpg" alt="FPS crew excavating and laying underground plumbing pipes inside a commercial building">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Underground</span><div class="gc-title">Indoor Excavation</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Underground Plumbing</span><div class="gc-strip-title">Indoor Excavation — Pipe Installation</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="mep">
-          <img class="gc-img" src="images/projects/underground-plumbing/02-parking-garage-underground.jpg" alt="Workers installing underground pipes in parking area excavation">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Underground</span><div class="gc-title">Parking Area Utilities</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Underground Plumbing</span><div class="gc-strip-title">Parking Area — Underground Utilities</div></div>
-        </div>
-
-        <div class="gallery-card reveal" data-category="mep">
-          <img class="gc-img" src="images/projects/underground-plumbing/03-rebar-foundation-formwork.jpg" alt="Rebar grid laid in foundation formwork trench">
-          <div class="gc-overlay"></div>
-          <div class="gc-info"><span class="gc-cat">Underground</span><div class="gc-title">Rebar Formwork</div></div>
-          <div class="gc-strip"><span class="gc-strip-cat">Underground Plumbing</span><div class="gc-strip-title">Rebar Grid — Foundation Formwork</div></div>
-        </div>
-
-        <div class="gallery-empty" id="gallery-empty">No projects in this category.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="project-cta">
-    <div class="wrap">
-      <div class="pcta-inner">
-        <h2 class="pcta-title">Ready to add your project to our portfolio?</h2>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a class="btn btn-outline-w" href="index.html#contact">Contact Us →</a>
-          <a class="btn" style="background:var(--white); color:var(--navy);" href="services.html">Our Services</a>
-        </div>
       </div>
     </div>
   </section>
@@ -1694,97 +600,292 @@
     <div class="lb-cap">
       <span class="lb-cap-cat" id="lb-cat"></span>
       <span class="lb-cap-title" id="lb-title"></span>
+      <span class="lb-counter"></span>
     </div>
   </div>
 
   <script>
-    // Nav
+    // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
     // Reveal
     const obs = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
-        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 80); obs.unobserve(e.target); }
+        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 60); obs.unobserve(e.target); }
       });
-    }, { threshold: 0.07 });
+    }, { threshold: 0.06 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    // Filter by project
-    const cards      = [...document.querySelectorAll('.gallery-card')];
-    const groupHeads = [...document.querySelectorAll('.group-head')];
-    const featHero   = document.getElementById('feat-hero');
+    // PROJECTS DATA — full photo arrays
+    const PROJECTS = {
+      'st-hildas': { name: "St. Hilda's House", cat: 'Institutional', photos: [
+        {src:'images/projects/st-hildas/01-exterior-building.jpg',title:'Exterior Building'},
+        {src:'images/projects/st-hildas/02-resident-bedroom.jpg',title:'Resident Bedroom'},
+        {src:'images/projects/st-hildas/03-hallway-corridor.jpg',title:'Interior Corridor'},
+        {src:'images/projects/st-hildas/04-community-kitchen.jpg',title:'Community Kitchen'},
+        {src:'images/projects/st-hildas/05-common-lounge.jpg',title:'Common Lounge'},
+      ]},
+      'bronxville-luxury': { name: 'Bronxville Luxury Renovation', cat: 'Residential', photos: [
+        {src:'images/projects/bronxville-luxury/01-kitchen-marble-island.jpg',title:'Chef\'s Kitchen'},
+        {src:'images/projects/bronxville-luxury/02-living-room-staged.jpg',title:'Fireplace Wall'},
+        {src:'images/projects/bronxville-luxury/03-kitchen-open-living.jpg',title:'Open Plan Living'},
+        {src:'images/projects/bronxville-luxury/04-kitchen-shelving.jpg',title:'Custom Millwork'},
+        {src:'images/projects/bronxville-luxury/05-living-room.jpg',title:'Great Room'},
+        {src:'images/projects/bronxville-luxury/06-marble-shower.jpg',title:'Marble Shower'},
+        {src:'images/projects/bronxville-luxury/07-double-vanity.jpg',title:'Primary Bath'},
+        {src:'images/projects/bronxville-luxury/08-vanity-detail.jpg',title:'Floating Vanity'},
+        {src:'images/projects/bronxville-luxury/09-water-closet.jpg',title:'Water Closet'},
+        {src:'images/projects/bronxville-luxury/10-glass-shower.jpg',title:'Glass Enclosure'},
+        {src:'images/projects/bronxville-luxury/11-hallway.jpg',title:'Hallway'},
+        {src:'images/projects/bronxville-luxury/12-kitchen-range.jpg',title:'Kitchen Range'},
+      ]},
+      'supportive-housing': { name: 'Supportive Housing Rehab', cat: 'Residential', photos: [
+        {src:'images/projects/supportive-housing/01-unit-living-room.jpg',title:'Unit Living Room'},
+        {src:'images/projects/supportive-housing/02-unit-kitchen-bath.jpg',title:'Unit Kitchen & Bath'},
+        {src:'images/projects/supportive-housing/03-kitchenette-detail.jpg',title:'Kitchenette'},
+        {src:'images/projects/supportive-housing/04-roof-parapet-coping.jpg',title:'Roof Parapet'},
+        {src:'images/projects/supportive-housing/05-roof-skyline.jpg',title:'Roof Skyline'},
+        {src:'images/projects/supportive-housing/06-unit-bedroom.jpg',title:'Unit Bedroom'},
+        {src:'images/projects/supportive-housing/07-kitchenette-fridge.jpg',title:'Kitchenette'},
+        {src:'images/projects/supportive-housing/08-bathroom.jpg',title:'Bathroom'},
+        {src:'images/projects/supportive-housing/09-unit-entry.jpg',title:'Unit Entry'},
+        {src:'images/projects/supportive-housing/10-kitchenette-cooktop.jpg',title:'Kitchenette Cooktop'},
+        {src:'images/projects/supportive-housing/11-unit-kitchen-bathroom.png',title:'Unit Kitchen & Bathroom'},
+      ]},
+      'new-construction': { name: 'New Construction', cat: 'Residential', photos: [
+        {src:'images/projects/new-construction/01-floor-joists-framing.jpg',title:'Floor Framing'},
+        {src:'images/projects/new-construction/02-roof-rafters.jpg',title:'Roof Rafters'},
+        {src:'images/projects/new-construction/03-drywall-finishing.jpg',title:'Drywall'},
+        {src:'images/projects/new-construction/04-roof-framing-alt.jpg',title:'Roof Framing'},
+      ]},
+      'foundation-excavation': { name: 'Foundation & Excavation', cat: 'Residential', photos: [
+        {src:'images/projects/foundation-excavation/01-excavation-building.jpg',title:'Excavation'},
+        {src:'images/projects/foundation-excavation/02-jackhammer-foundation.jpg',title:'Foundation Work'},
+        {src:'images/projects/foundation-excavation/03-trench-shoring.jpg',title:'Trench Shoring'},
+      ]},
+      'healthcare-facility': { name: 'Healthcare Facility Renovations', cat: 'Healthcare', photos: [
+        'images/projects/healthcare-facility/01-patient-room-corridor.jpg',
+        'images/projects/healthcare-facility/02-patient-waiting-area.jpg',
+        'images/projects/healthcare-facility/03-patient-room-wide.jpg',
+        'images/projects/healthcare-facility/04-patient-bathroom-tub.jpg',
+        'images/projects/healthcare-facility/05-patient-bathroom-entry.jpg',
+        'images/projects/healthcare-facility/06-medical-office-corridor.png',
+        'images/projects/healthcare-facility/07-supply-storage-room.jpg',
+        'images/projects/healthcare-facility/08-exam-room-sink-desk.jpg',
+        'images/projects/healthcare-facility/09-reception-lobby.jpg',
+        'images/projects/healthcare-facility/10-exam-room-wide.jpg',
+        'images/projects/healthcare-facility/11-treatment-room-exam-bed.jpg',
+        'images/projects/healthcare-facility/12-residential-corridor-artwork.jpg',
+        'images/projects/healthcare-facility/13-dining-area-movie-posters.jpg',
+        'images/projects/healthcare-facility/14-lounge-jukebox-dining.jpg',
+        'images/projects/healthcare-facility/15-corridor-tv-lounge.jpg',
+        'images/projects/healthcare-facility/16-corridor-amenity-area.jpg',
+        'images/projects/healthcare-facility/17-pt-room-checkerboard.jpg',
+        'images/projects/healthcare-facility/18-nursing-corridor-wainscoting.jpg',
+        'images/projects/healthcare-facility/19-led-art-wall-mural.jpg',
+        'images/projects/healthcare-facility/20-resident-lounge-tv.jpg',
+        'images/projects/healthcare-facility/21-resident-lounge-sofas.jpg',
+        'images/projects/healthcare-facility/22-lounge-bathroom-composite.png',
+        'images/projects/healthcare-facility/23-resident-lounge-wide.jpg',
+        'images/projects/healthcare-facility/24-dining-common-area-wide.jpg',
+        'images/projects/healthcare-facility/25-lobby-planted-garden-wall.jpg',
+        'images/projects/healthcare-facility/26-dining-area-long-view.jpg',
+        'images/projects/healthcare-facility/27-dining-art-walls-close.jpg',
+        'images/projects/healthcare-facility/28-dining-area-alt-angle.jpg',
+        'images/projects/healthcare-facility/29-patient-wing-corridor.jpg',
+        'images/projects/healthcare-facility/30-main-dining-room.jpg',
+        'images/projects/healthcare-facility/31-conference-meeting-room.jpg',
+        'images/projects/healthcare-facility/32-lobby-garden-tv-wall.jpg',
+        'images/projects/healthcare-facility/33-dining-sunflower-art-wall.jpg',
+        'images/projects/healthcare-facility/34-lobby-aquarium-feature.jpg',
+        'images/projects/healthcare-facility/35-lobby-butterfly-art-wall.jpg',
+        'images/projects/healthcare-facility/36-patient-corridor-vct-stripe.jpg',
+        'images/projects/healthcare-facility/37-reception-lobby-red-floral.jpg',
+        'images/projects/healthcare-facility/38-reception-curved-desk-floral-art.jpg',
+        'images/projects/healthcare-facility/39-pt-room-stone-accent-wall.jpg',
+        'images/projects/healthcare-facility/40-activity-dining-room.jpg',
+        'images/projects/healthcare-facility/41-lobby-butterfly-art-b.jpg',
+        'images/projects/healthcare-facility/42-lobby-aquarium-flag.jpg',
+        'images/projects/healthcare-facility/43-lobby-aquarium-living-wall.jpg',
+        'images/projects/healthcare-facility/44-waiting-room-autumn-art.jpg',
+        'images/projects/healthcare-facility/45-infusion-treatment-center.jpg',
+      ].map((src,i) => ({src, title:`Photo ${i+1}`}))},
+      'rehabilitation-center': { name: 'Rehabilitation Center', cat: 'Healthcare', photos: [
+        {src:'images/projects/rehabilitation-center/01-activity-corridor-colorful.jpg',title:'Activity Corridor'},
+        {src:'images/projects/rehabilitation-center/02-corridor-orange-green.jpg',title:'Corridor'},
+        {src:'images/projects/rehabilitation-center/03-kitchenette-lime-countertop.jpg',title:'Kitchenette'},
+        {src:'images/projects/rehabilitation-center/04-corridor-orange-stripe.jpg',title:'Corridor'},
+        {src:'images/projects/rehabilitation-center/05-pt-gym-ballet-bars.jpg',title:'PT Gym'},
+        {src:'images/projects/rehabilitation-center/06-pt-gym-active-equipment.jpg',title:'PT Equipment'},
+        {src:'images/projects/rehabilitation-center/07-corridor-before-after.png',title:'Before & After'},
+        {src:'images/projects/rehabilitation-center/08-open-activity-space.jpg',title:'Activity Space'},
+      ]},
+      'ada-bathroom': { name: 'ADA Bathroom Renovation', cat: 'Healthcare', photos: [
+        {src:'images/projects/ada-bathroom/01-ada-shower-tile.jpg',title:'ADA Shower'},
+        {src:'images/projects/ada-bathroom/02-ada-bathroom-complete.jpg',title:'ADA Bathroom'},
+      ]},
+      'commercial-lobby': { name: 'Commercial Lobby Renovation', cat: 'Commercial', photos: [
+        {src:'images/projects/commercial-lobby/01-lobby-completed.jpg',title:'Lobby Completed'},
+        {src:'images/projects/commercial-lobby/02-tile-laying-progress.jpg',title:'Tile Installation'},
+        {src:'images/projects/commercial-lobby/03-mortar-troweling.jpg',title:'Mortar Work'},
+        {src:'images/projects/commercial-lobby/04-tile-layout-planning.jpg',title:'Tile Layout'},
+      ]},
+      'grand-lobby': { name: 'Grand Lobby Renovation', cat: 'Commercial', photos: [
+        {src:'images/projects/grand-lobby/01-lobby-entry-stone-wall.jpg',title:'Lobby Entry'},
+        {src:'images/projects/grand-lobby/02-stone-accent-wall-bench.jpg',title:'Stone Accent Wall'},
+      ]},
+      'dime-bank': { name: 'Dime Bank Branch', cat: 'Commercial', photos: [
+        {src:'images/projects/dime-bank/05-teller-station-close.jpg',title:'Teller Station'},
+        {src:'images/projects/dime-bank/06-glass-partition-entry.jpg',title:'Glass Entry'},
+      ]},
+      'commercial-interior': { name: 'Commercial Interior', cat: 'Commercial', photos: [
+        {src:'images/projects/commercial-interior/01-wave-wall-dome-lights.jpg',title:'Interior'},
+      ]},
+      'commercial-boardroom': { name: 'Corporate Boardroom', cat: 'Commercial', photos: [
+        {src:'images/projects/commercial-boardroom/01-boardroom-dome-pendants.jpg',title:'Boardroom'},
+      ]},
+      'office-renovation': { name: 'Office Renovation', cat: 'Office & Corporate', photos: [
+        {src:'images/projects/office-renovation/01-open-plan-office.jpg',title:'Open Plan'},
+        {src:'images/projects/office-renovation/02-restroom-renovation.jpg',title:'Restroom'},
+        {src:'images/projects/office-renovation/03-carpet-installation.jpg',title:'Carpet'},
+        {src:'images/projects/office-renovation/04-hallway-painting.jpg',title:'Hallway'},
+        {src:'images/projects/office-renovation/05-open-floor-ceiling-grid.jpg',title:'Ceiling Grid'},
+        {src:'images/projects/office-renovation/06-open-floor-dark-columns.jpg',title:'Open Floor'},
+        {src:'images/projects/office-renovation/07-open-floor-painting.jpg',title:'Painting'},
+        {src:'images/projects/office-renovation/08-open-floor-progress.jpg',title:'Progress'},
+        {src:'images/projects/office-renovation/09-office-spaces-composite.png',title:'Office Spaces'},
+        {src:'images/projects/office-renovation/10-open-plan-green-panels.jpg',title:'Green Panels'},
+        {src:'images/projects/office-renovation/11-cubicle-office-floral-art.jpg',title:'Cubicle Office'},
+        {src:'images/projects/office-renovation/12-open-floor-glass-offices.jpg',title:'Glass Offices'},
+      ]},
+      'corporate-reception': { name: 'Corporate Reception', cat: 'Office & Corporate', photos: [
+        {src:'images/projects/corporate-reception/01-reception-desk-front.jpg',title:'Reception Front'},
+        {src:'images/projects/corporate-reception/02-reception-desk-detail.jpg',title:'Reception Detail'},
+        {src:'images/projects/corporate-reception/03-reception-desk-wide.jpg',title:'Reception Wide'},
+        {src:'images/projects/corporate-reception/04-reception-desk-angle.png',title:'Reception Angle'},
+        {src:'images/projects/corporate-reception/05-grand-reception-desk.jpg',title:'Grand Reception'},
+      ]},
+      'executive-suite': { name: 'Executive Suite', cat: 'Office & Corporate', photos: [
+        {src:'images/projects/executive-suite/01-kitchen-lounge-composite.png',title:'Kitchen & Lounge'},
+        {src:'images/projects/executive-suite/02-conference-room-kitchen.jpg',title:'Conference Room'},
+        {src:'images/projects/executive-suite/03-boardroom-vanity-shower.png',title:'Boardroom Suite'},
+        {src:'images/projects/executive-suite/04-lobby-white-green-chairs.jpg',title:'Lobby'},
+        {src:'images/projects/executive-suite/05-executive-kitchen-vessel-sink.jpg',title:'Executive Kitchen'},
+        {src:'images/projects/executive-suite/06-executive-lounge-city-view.jpg',title:'City View Lounge'},
+      ]},
+      'hospitality': { name: 'Hospitality & Hotel Projects', cat: 'Hospitality', photos: [
+        {src:'images/projects/hospitality/01-hotel-lobby-reception.jpg',title:'Hotel Lobby'},
+        {src:'images/projects/hospitality/02-lobby-desk-installation.jpg',title:'Lobby Desk'},
+        {src:'images/projects/hospitality/03-hotel-exterior-rendering.jpg',title:'Exterior'},
+        {src:'images/projects/hospitality/04-lobby-reception-completed.jpg',title:'Reception'},
+        {src:'images/projects/hospitality/05-guest-corridor-in-progress.jpg',title:'Guest Corridor'},
+        {src:'images/projects/hospitality/06-suite-bath-kitchen-dining.png',title:'Suite'},
+        {src:'images/projects/hospitality/07-ada-suite-bathroom.jpg',title:'ADA Suite Bath'},
+        {src:'images/projects/hospitality/08-lobby-lounge-seating.jpg',title:'Lobby Lounge'},
+        {src:'images/projects/hospitality/09-bathroom-corridor-shower.png',title:'Suite Bath'},
+        {src:'images/projects/hospitality/10-hotel-exterior-grand-van.jpg',title:'Hotel Exterior'},
+        {src:'images/projects/hospitality/11-reception-desk-early.jpg',title:'Reception'},
+        {src:'images/projects/hospitality/12-corridor-office-composite.png',title:'Corridor'},
+        {src:'images/projects/hospitality/13-business-center-tv-room.jpg',title:'Business Center'},
+        {src:'images/projects/hospitality/14-business-center-office.jpg',title:'Business Office'},
+        {src:'images/projects/hospitality/15-suite-bath-bedroom-composite.png',title:'Suite'},
+        {src:'images/projects/hospitality/16-suite-bathrooms-composite.jpg',title:'Suite Bathrooms'},
+      ]},
+      'fitness-center': { name: 'Fitness Center', cat: 'Hospitality', photos: [
+        {src:'images/projects/fitness-center/01-gym-yellow-floor.jpg',title:'Fitness Center'},
+      ]},
+      'masonry-entrance': { name: 'Masonry & ADA Entrance Restoration', cat: 'Facade & Masonry', photos: [
+        {src:'images/projects/masonry-entrance/after.jpg',title:'Completed'},
+        {src:'images/projects/masonry-entrance/before.jpg',title:'Before'},
+      ]},
+      'facade-window-replacement': { name: 'Facade & Window Replacement', cat: 'Facade & Masonry', photos: [
+        {src:'images/projects/facade-window-replacement/01-scaffolding-worker.jpg',title:'Scaffolding'},
+        {src:'images/projects/facade-window-replacement/02-building-scaffolding.jpg',title:'Building Scaffolding'},
+        {src:'images/projects/facade-window-replacement/03-fps-crew-scaffolding.jpg',title:'FPS Crew'},
+        {src:'images/projects/facade-window-replacement/04-densglass-facade-queens.jpg',title:'Facade'},
+        {src:'images/projects/facade-window-replacement/05-building-scaffold-netting.jpg',title:'Netting'},
+      ]},
+      'roof-waterproofing': { name: 'Roof & Waterproofing', cat: 'Roofing', photos: [
+        {src:'images/projects/roof-waterproofing/01-roof-coating.jpg',title:'Roof Coating'},
+        {src:'images/projects/roof-waterproofing/02-terrace-membrane.jpg',title:'Terrace Membrane'},
+        {src:'images/projects/roof-waterproofing/03-crew-coating.jpg',title:'Crew at Work'},
+        {src:'images/projects/roof-waterproofing/04-applying-coating.jpg',title:'Applying Coating'},
+      ]},
+      'hvac-mechanical': { name: 'HVAC & Mechanical', cat: 'MEP & Infrastructure', photos: [
+        {src:'images/projects/hvac-mechanical/01-hvac-crane-installation.jpg',title:'HVAC Installation'},
+      ]},
+      'radiant-floor-heating': { name: 'Radiant Floor Heating', cat: 'MEP & Infrastructure', photos: [
+        {src:'images/projects/radiant-floor-heating/01-pex-tubing-installation.jpg',title:'PEX Tubing'},
+        {src:'images/projects/radiant-floor-heating/02-pex-tubing-room.jpg',title:'PEX Room'},
+      ]},
+      'underground-plumbing': { name: 'Underground Plumbing', cat: 'MEP & Infrastructure', photos: [
+        {src:'images/projects/underground-plumbing/01-indoor-excavation-plumbing.jpg',title:'Excavation'},
+        {src:'images/projects/underground-plumbing/02-parking-garage-underground.jpg',title:'Underground'},
+        {src:'images/projects/underground-plumbing/03-rebar-foundation-formwork.jpg',title:'Foundation'},
+      ]},
+      'tile-installation': { name: 'Tile Installation', cat: 'MEP & Infrastructure', photos: [
+        {src:'images/projects/tile-installation/01-wood-look-tile-progress.jpg',title:'Tile Progress'},
+        {src:'images/projects/tile-installation/02-fps-tiling-crew.jpg',title:'FPS Tiling Crew'},
+      ]},
+    };
+
+    // Filter
+    const projCards = [...document.querySelectorAll('.proj-card')];
+    const featHero = document.getElementById('feat-hero');
     const filterBtns = [...document.querySelectorAll('.filter-btn')];
-    const emptyMsg   = document.getElementById('gallery-empty');
-    const baSection  = document.getElementById('ba-section');
-    const FEATURED   = featHero.dataset.category;
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const cat = btn.dataset.filter;
-        featHero.style.display = (cat === 'all' || cat === FEATURED) ? '' : 'none';
-        baSection.classList.toggle('hidden', !(cat === 'all' || cat === 'facade'));
-        let vis = 0;
-        cards.forEach(card => {
-          const show = cat === 'all' || card.dataset.category === cat;
-          card.classList.toggle('hidden', !show);
-          if (show) vis++;
+        featHero.style.display = (cat === 'all' || cat === 'institutional') ? '' : 'none';
+        projCards.forEach(card => {
+          card.classList.toggle('hidden', cat !== 'all' && card.dataset.category !== cat);
         });
-        emptyMsg.classList.toggle('show', vis === 0);
       });
     });
 
-    // Before / After slider
-    (function(){
-      const slider = document.getElementById('ba1');
-      if (!slider) return;
-      const setPos = (clientX) => {
-        const r = slider.getBoundingClientRect();
-        let pct = ((clientX - r.left) / r.width) * 100;
-        pct = Math.max(0, Math.min(100, pct));
-        slider.style.setProperty('--pos', pct + '%');
-      };
-      let dragging = false;
-      slider.addEventListener('pointerdown', e => { dragging = true; setPos(e.clientX); slider.setPointerCapture(e.pointerId); });
-      slider.addEventListener('pointermove', e => { if (dragging) setPos(e.clientX); });
-      slider.addEventListener('pointerup',   () => dragging = false);
-      slider.addEventListener('pointercancel', () => dragging = false);
-      slider.style.setProperty('--pos', '50%');
-    })();
-
     // Lightbox
-    let lbIdx = 0;
+    let lbPhotos = [], lbIdx = 0;
     const lb = document.getElementById('lb');
     const lbImg = document.getElementById('lb-img');
     const lbCat = document.getElementById('lb-cat');
     const lbTitle = document.getElementById('lb-title');
 
-    function visCards() { return cards.filter(c => !c.classList.contains('hidden')); }
     function openLb(idx) {
-      lbIdx = idx;
-      const card = visCards()[lbIdx];
-      if (!card) return;
-      lbImg.src = card.querySelector('.gc-img').src;
-      lbCat.textContent = card.querySelector('.gc-strip-cat').textContent;
-      lbTitle.textContent = card.querySelector('.gc-strip-title').textContent;
+      lbIdx = Math.max(0, Math.min(idx, lbPhotos.length - 1));
+      const p = lbPhotos[lbIdx];
+      lbImg.src = p.src;
+      lbTitle.textContent = p.title;
+      const counter = lb.querySelector('.lb-counter');
+      if (counter) counter.textContent = `${lbIdx + 1} / ${lbPhotos.length}`;
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
     function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
 
-    cards.forEach(card => card.addEventListener('click', () => openLb(visCards().indexOf(card))));
+    projCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.project;
+        const proj = PROJECTS[id];
+        if (!proj) return;
+        lbPhotos = proj.photos;
+        lbCat.textContent = proj.cat;
+        openLb(0);
+      });
+    });
+
     document.getElementById('lb-close').addEventListener('click', closeLb);
-    document.getElementById('lb-prev').addEventListener('click', () => { const v = visCards(); openLb((lbIdx - 1 + v.length) % v.length); });
-    document.getElementById('lb-next').addEventListener('click', () => { const v = visCards(); openLb((lbIdx + 1) % v.length); });
+    document.getElementById('lb-prev').addEventListener('click', () => openLb(lbIdx - 1));
+    document.getElementById('lb-next').addEventListener('click', () => openLb(lbIdx + 1));
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('open')) return;
-      const v = visCards();
       if (e.key === 'Escape') closeLb();
-      if (e.key === 'ArrowLeft')  openLb((lbIdx - 1 + v.length) % v.length);
-      if (e.key === 'ArrowRight') openLb((lbIdx + 1) % v.length);
+      if (e.key === 'ArrowLeft') openLb(lbIdx - 1);
+      if (e.key === 'ArrowRight') openLb(lbIdx + 1);
     });
   </script>
 </body>
