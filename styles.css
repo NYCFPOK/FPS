@@ -18,7 +18,9 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Libre Franklin', sans-serif;
   color: var(--ink);
-  background: var(--white);
+  background-color: var(--white);
+  background-image: url('images/blueprint.svg');
+  background-size: 600px 600px;
   overflow-x: hidden;
 }
 
@@ -43,7 +45,8 @@ body {
 }
 .nav-inner {
   height: var(--nav-h);
-  background: var(--white);
+  background: var(--white) url('images/blueprint.svg');
+  background-size: 600px 600px;
   display: flex; align-items: center;
   padding: 0 52px;
   border-bottom: 1px solid transparent;
@@ -115,7 +118,7 @@ body {
 /* ── LAYOUT ── */
 .wrap { max-width: 1320px; margin: 0 auto; padding: 0 52px; }
 .section { padding: 96px 0; }
-.section-alt { background: var(--off); }
+.section-alt { background: var(--off) url('images/blueprint.svg'); background-size: 600px 600px; }
 .section-dark { background: var(--navy); color: var(--white); }
 .section-ink { background: var(--ink); color: var(--white); }
 
