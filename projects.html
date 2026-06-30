@@ -225,16 +225,16 @@
   <div class="filter-strip">
     <div class="wrap">
       <div class="filter-inner">
-        <button class="filter-btn active" data-filter="all">All <span class="filter-count">21</span></button>
+        <button class="filter-btn active" data-filter="all">All <span class="filter-count">24</span></button>
         <button class="filter-btn" data-filter="institutional">Institutional <span class="filter-count">1</span></button>
         <button class="filter-btn" data-filter="residential">Residential <span class="filter-count">4</span></button>
-        <button class="filter-btn" data-filter="healthcare">Healthcare <span class="filter-count">3</span></button>
-        <button class="filter-btn" data-filter="commercial">Commercial <span class="filter-count">2</span></button>
+        <button class="filter-btn" data-filter="healthcare">Healthcare <span class="filter-count">4</span></button>
+        <button class="filter-btn" data-filter="commercial">Commercial <span class="filter-count">3</span></button>
         <button class="filter-btn" data-filter="office">Office &amp; Corporate <span class="filter-count">3</span></button>
         <button class="filter-btn" data-filter="hospitality">Hospitality <span class="filter-count">2</span></button>
         <button class="filter-btn" data-filter="facade">Facade &amp; Masonry <span class="filter-count">2</span></button>
         <button class="filter-btn" data-filter="roofing">Roofing <span class="filter-count">1</span></button>
-        <button class="filter-btn" data-filter="mep">MEP &amp; Infrastructure <span class="filter-count">3</span></button>
+        <button class="filter-btn" data-filter="mep">MEP &amp; Infrastructure <span class="filter-count">4</span></button>
       </div>
     </div>
   </div>
@@ -519,6 +519,42 @@
           <span class="proj-arrow">→</span>
         </div>
 
+        <!-- Article 28 Medical Clinic Build-Out -->
+        <div class="proj-card reveal" data-category="healthcare" data-project="article-28-medical-clinic">
+          <div class="proj-img"><img src="images/projects/article-28-medical-clinic/04.jpg" alt="Article 28 Medical Clinic Build-Out" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Healthcare</span>
+            <div class="proj-name">Article 28 Medical Clinic Build-Out</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- Commercial Kitchen -->
+        <div class="proj-card reveal" data-category="commercial" data-project="commercial-kitchen">
+          <div class="proj-img"><img src="images/projects/commercial-kitchen/02.jpg" alt="Commercial Kitchen" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Commercial</span>
+            <div class="proj-name">Commercial Kitchen</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
+        <!-- Solar Panel Installation -->
+        <div class="proj-card reveal" data-category="mep" data-project="solar-panel-installation">
+          <div class="proj-img"><img src="images/projects/solar-panel-installation/03.jpg" alt="Solar Panel Installation" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">MEP &amp; Infrastructure</span>
+            <div class="proj-name">Solar Panel Installation</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
       </div>
     </div>
   </section>
@@ -798,6 +834,39 @@
         {src:'images/projects/tile-installation/01-wood-look-tile-progress.jpg',title:'Tile Progress'},
         {src:'images/projects/tile-installation/02-fps-tiling-crew.jpg',title:'FPS Tiling Crew'},
       ]},
+      'article-28-medical-clinic': { name: 'Article 28 Medical Clinic Build-Out', cat: 'Healthcare', photos: [
+        'images/projects/article-28-medical-clinic/01.jpg',
+        'images/projects/article-28-medical-clinic/02.jpg',
+        'images/projects/article-28-medical-clinic/03.jpg',
+        'images/projects/article-28-medical-clinic/04.jpg',
+        'images/projects/article-28-medical-clinic/05.jpg',
+        'images/projects/article-28-medical-clinic/06.jpg',
+        'images/projects/article-28-medical-clinic/07.jpg',
+        'images/projects/article-28-medical-clinic/08.jpg',
+        'images/projects/article-28-medical-clinic/09.jpg',
+        'images/projects/article-28-medical-clinic/10.jpg',
+        'images/projects/article-28-medical-clinic/11.jpg',
+        'images/projects/article-28-medical-clinic/12.jpg',
+        'images/projects/article-28-medical-clinic/13.jpg',
+        'images/projects/article-28-medical-clinic/14.jpg',
+        'images/projects/article-28-medical-clinic/15.jpg',
+        'images/projects/article-28-medical-clinic/16.jpg',
+        'images/projects/article-28-medical-clinic/17.jpg',
+      ].map((src,i)=>({src,title:`Photo ${i+1}`}))},
+      'commercial-kitchen': { name: 'Commercial Kitchen', cat: 'Commercial', photos: [
+        'images/projects/commercial-kitchen/01.jpg',
+        'images/projects/commercial-kitchen/02.jpg',
+        'images/projects/commercial-kitchen/03.jpg',
+        'images/projects/commercial-kitchen/04.jpg',
+      ].map((src,i)=>({src,title:`Photo ${i+1}`}))},
+      'solar-panel-installation': { name: 'Solar Panel Installation', cat: 'MEP & Infrastructure', photos: [
+        'images/projects/solar-panel-installation/01.jpg',
+        'images/projects/solar-panel-installation/02.jpg',
+        'images/projects/solar-panel-installation/03.jpg',
+        'images/projects/solar-panel-installation/04.jpg',
+        'images/projects/solar-panel-installation/05.jpg',
+        'images/projects/solar-panel-installation/06.jpg',
+      ].map((src,i)=>({src,title:`Photo ${i+1}`}))},
     };
 
     // Filter
