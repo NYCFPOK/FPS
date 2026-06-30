@@ -225,11 +225,11 @@
   <div class="filter-strip">
     <div class="wrap">
       <div class="filter-inner">
-        <button class="filter-btn active" data-filter="all">All <span class="filter-count">24</span></button>
+        <button class="filter-btn active" data-filter="all">All <span class="filter-count">25</span></button>
         <button class="filter-btn" data-filter="institutional">Institutional <span class="filter-count">1</span></button>
         <button class="filter-btn" data-filter="residential">Residential <span class="filter-count">4</span></button>
         <button class="filter-btn" data-filter="healthcare">Healthcare <span class="filter-count">4</span></button>
-        <button class="filter-btn" data-filter="commercial">Commercial <span class="filter-count">3</span></button>
+        <button class="filter-btn" data-filter="commercial">Commercial <span class="filter-count">4</span></button>
         <button class="filter-btn" data-filter="office">Office &amp; Corporate <span class="filter-count">3</span></button>
         <button class="filter-btn" data-filter="hospitality">Hospitality <span class="filter-count">2</span></button>
         <button class="filter-btn" data-filter="facade">Facade &amp; Masonry <span class="filter-count">2</span></button>
@@ -555,6 +555,19 @@
           <span class="proj-arrow">→</span>
         </div>
 
+
+        <!-- Dime Bank New Branch Build-Out -->
+        <div class="proj-card reveal" data-category="commercial" data-project="dime-bank-new-branch">
+          <div class="proj-img"><img src="images/projects/dime-bank-new-branch/01.jpg" alt="Dime Bank New Branch Build-Out" loading="lazy"></div>
+          <div class="proj-gradient"></div>
+          <div class="proj-info">
+            <span class="proj-cat">Commercial</span>
+            <div class="proj-name">Dime Bank New Branch Build-Out</div>
+            <div class="proj-loc">New York Metro Area</div>
+          </div>
+          <span class="proj-arrow">→</span>
+        </div>
+
       </div>
     </div>
   </section>
@@ -866,6 +879,13 @@
         'images/projects/solar-panel-installation/04.jpg',
         'images/projects/solar-panel-installation/05.jpg',
         'images/projects/solar-panel-installation/06.jpg',
+      ].map((src,i)=>({src,title:`Photo ${i+1}`}))},
+      'dime-bank-new-branch': { name: 'Dime Bank New Branch Build-Out', cat: 'Commercial', photos: [
+        'images/projects/dime-bank-new-branch/01.jpg',
+        'images/projects/dime-bank-new-branch/02.jpg',
+        'images/projects/dime-bank-new-branch/03.jpg',
+        'images/projects/dime-bank-new-branch/04.jpg',
+        'images/projects/dime-bank-new-branch/05.jpg',
       ].map((src,i)=>({src,title:`Photo ${i+1}`}))},
     };
 
