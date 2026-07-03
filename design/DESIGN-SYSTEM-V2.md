@@ -95,3 +95,15 @@ Same tokens/typography as v2. New in v3 (`mockup-*-v3.html`):
   type) + contact hairline rows + slim footer merged.
 - Motion: IntersectionObserver reveals, count-ups, Ken Burns, slide progress —
   all gated by prefers-reduced-motion.
+
+---
+# V4 ADDENDUM
+- REAL FONTS embedded (mockups had system fallbacks): Archivo 300/500/600 +
+  Libre Franklin 300/400/600, latin woff2 inline. Real build: keep Google Fonts
+  link but add weights 300 & 500 to the existing families import.
+- TYPE SCALE AUDIT: all micro-caps raised — caps 10->11.5px @ .26em; stat labels
+  8.5->11px; contact/footer labels 9-10 -> 11px; card meta 9.5->11px; chapter
+  headers 10->11.5px; underline links 9.5->10.5px. Stat numerals 34-52 -> 48-72px.
+  No font-weight 700 (600 max, 300 for display).
+- BLUEPRINT watermark returned: images/blueprint.png tiled at 1150px auto on
+  light sections — homepage: statement + closing spread; projects: intro + notes.
