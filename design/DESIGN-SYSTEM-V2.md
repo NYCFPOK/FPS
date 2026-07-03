@@ -74,3 +74,24 @@ Luxury Residential · Kitchens & Baths · Roofing & Waterproofing · Occupied Re
 - Blueprint watermark: keep, but consider reducing opacity on paper ground.
 - OPEN QUESTION (user hasn't decided): brass accent is new to brand —
   fallback is swapping brass → navy hairlines if they want strictly on-brand.
+
+---
+# V3 ADDENDUM (pending approval — supersedes v2 structures if approved)
+Same tokens/typography as v2. New in v3 (`mockup-*-v3.html`):
+- PROJECTS: full-page case-study OVERLAY replaces modal — 82vh cinematic hero
+  (image settles from scale 1.06), fixed index badge "04 / 09" + round close btn,
+  facts bar (Sector/Location/Setting/Scope count), serif lede, chapters with brass-tick
+  headers, TWO full-bleed images inline between chapters, 3-col gallery -> lightbox,
+  ink CTA row, full-width "Next Project" teaser (cycles projects).
+- PROJECTS grid: 12-col staggered editorial pattern (pos-a 1/8 4:3, pos-b 8/13
+  portrait +96px offset, pos-c 1/6 portrait, pos-d 6/13 16:10 +56px), index numbers
+  01/02..., pattern reassigned by JS after each filter. Mobile: single col, offsets off.
+- Mobile filters: sticky swipeable row under nav (not left rail).
+- HOMEPAGE: cinematic full-vh hero w/ Ken Burns slides, slide index "01 — 03",
+  animated brass progress line, serif caption per slide; centered statement section;
+  proof band w/ count-up stats in hairline columns; featured work as ALTERNATING
+  editorial rows (7/5 grid, mirrored); sector index w/ sticky hover image PREVIEW
+  column (desktop); serif quote on ink; closing spread "Let's build." (huge light
+  type) + contact hairline rows + slim footer merged.
+- Motion: IntersectionObserver reveals, count-ups, Ken Burns, slide progress —
+  all gated by prefers-reduced-motion.
